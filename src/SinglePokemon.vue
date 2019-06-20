@@ -28,7 +28,6 @@
         },
         
         created() {
-       
            console.log("I AM CREATED AND MY VALUE IS: ",this.infoSinglePokemonProp);     
         },
 

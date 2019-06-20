@@ -1,8 +1,9 @@
 <template>
   <v-app>
+
       <div id="wrapping-div">
         <div class="divSeePokemons" v-if="showDivPokemon">
-          <ListPokemons  :infoPokemonsProp="infoPokemons" />
+          <ListPokemons  :infoPokemonsProp="infoPokemons" :imagesPokemonsProp="imagesPokemons"/>
         </div>
 
         <div class="divSinglePokemon" v-if="showDivSinglePokemon">
@@ -20,7 +21,7 @@
             <v-card-title primary-title>
               <div>
                 <h3 class="headline mb-0">Welcome to Pokemons' App</h3>
-                <div> {{ card_text }} </div>
+                
               </div>
             </v-card-title>
 
@@ -49,9 +50,9 @@ import ListPokemons from "./ListPokemons.vue"
     },
    
     data () {
-     
       return {
         infoPokemons: "pokemons",
+        imagesPokemons: "images",
         showDivPokemon: false,
         showDivSinglePokemon: false,
         images: {
@@ -62,7 +63,7 @@ import ListPokemons from "./ListPokemons.vue"
     },
 
     methods: {
-        getPokemons() {
+      getPokemons() {
         console.log("Hello, I work!");
         const axios = require('axios');
         axios.get('https://pokeapi.co/api/v2/pokemon/')
@@ -70,13 +71,23 @@ import ListPokemons from "./ListPokemons.vue"
         .catch(function (error) {
         console.log("THIS IS THE ERROR:",error);
         })
-        
         return this.infoPokemons
       },
 
-         showPokemons() {
-          this.toggleClass();
-          this.toggleClassSinglePokemon()
+      getPokemonsImages() {
+        console.log("Hello, I workkkkkkk!");
+        const axios = require('axios');
+        axios.get('https://pokeapi.co/api/v2/pokemon-form/1/')
+        .then(response => (this.imagesPokemons = response.data.sprites))
+        .catch(function (error) {
+        console.log("THIS IS THE ERROR:",error);
+        })
+        return this.imagesPokemons
+      },
+
+      showPokemons() {
+        this.toggleClass();
+        this.toggleClassSinglePokemon()
       },
 
       toggleClass() {
@@ -89,8 +100,10 @@ import ListPokemons from "./ListPokemons.vue"
     },
 
       created() {
-        let infoPokemons = this.getPokemons()
+        let infoPokemons = this.getPokemons();
         console.log("THESE ARE MY POKEMONS: ", this.infoPokemons)
+        let imagesPokemons = this.getPokemonsImages();
+        console.log("THESE ARE MY IMAGES: ", this.imagesPokemons)
       },
   }
 </script>
