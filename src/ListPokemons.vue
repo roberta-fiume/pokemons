@@ -4,7 +4,8 @@
         <h2><a v-bind:href="pokemon.url">NAME: {{pokemon.name}}</a></h2> 
       </div>
       <div v-for="image in imagesArray" :key="image.front_default">
-          <h2><a v-bind:href="image.url"> IMAGE: {{image.front_default}}</a></h2>
+          <!-- <h2><a v-bind:href="image.url"> IMAGE: {{image.front_default}}</a></h2> -->
+          <img :src="path + 'PokeAPI/sprites/master/sprites/pokemon/'+ '1.png'"/>
       </div>
     </div>
 </template>
@@ -20,7 +21,8 @@ export default {
 
     data() {
         return {
-            imagesArray: []
+            imagesArray: [],
+            path: "https://raw.githubusercontent.com/"
         }
     },
 
@@ -33,8 +35,13 @@ export default {
 
     created() {
        this.imagesArray = this.imagesPokemonsProp
-        console.log("THIS IS MY IMAGE PROP:", this.imagesArray)
-    }
+        console.log("THIS IS MY IMAGE PROP IN CREATED:",  this.imagesArray)
+    },
+
+    // mounted() {
+    //      this.imagesArray = this.imagesPokemonsProp
+    //     console.log("THIS IS MY IMAGE PROP in MOUNTED:", this.imagesArray )
+    // }
 }
 </script>
 

@@ -26,7 +26,7 @@
             </v-card-title>
 
             <v-card-actions>
-              <v-btn flat class="purple accent-1" @click="showPokemons()">get Pokemons</v-btn>
+              <v-btn flat class="purple accent-1" @click="showPokemons(), listPokemonsImages(), countPokemonsNames()" >get Pokemons</v-btn>
             </v-card-actions>
           </v-card>
         </v-flex>
@@ -78,7 +78,7 @@ import ListPokemons from "./ListPokemons.vue"
         console.log("Hello, I workkkkkkk!");
         const axios = require('axios');
         axios.get('https://pokeapi.co/api/v2/pokemon-form/1/')
-        .then(response => (this.imagesPokemons = response.data.sprites))
+        .then(response => (this.imagesPokemons = response.data.sprites.front_default))
         .catch(function (error) {
         console.log("THIS IS THE ERROR:",error);
         })
@@ -96,9 +96,37 @@ import ListPokemons from "./ListPokemons.vue"
 
       toggleClassSinglePokemon() {
         this.showDivSinglePokemon = !this.showDivSinglePokemon
-      }
-    },
+      },
 
+    
+      
+      countPokemonsNames() {
+        console.log("countPokemonsNames", this.infoPokemons )
+          let totalPokemonsNames = 0;
+          if (this.infoPokemons == undefined) {
+            return totalPokemonsNames;
+          }
+            totalPokemonsNames = this.infoPokemons.length
+            console.log("THIS IS THE TOTAL:", totalPokemonsNames)
+          return totalPokemonsNames;
+      },
+
+        listPokemonsImages() {
+        let totalPokemonsNames = this.countPokemonsNames();
+        let apiLink = "https://pokeapi.co/api/v2/pokemon-form/";
+        console.log("THIS IS THE LENGHTTTTTT", totalPokemonsNames);
+          let arrayPokemons = [];
+          var pokemons = 0;
+          for (var i = 1; i < totalPokemonsNames; i++) {
+            var pokemons = apiLink  + i + "/";
+            console.log("THIS IS MY STRING", pokemons);
+            arrayPokemons.push(pokemons);
+          }
+            console.log("THIS IS THE ARRAY WITH POKEMONS:", arrayPokemons)
+             return arrayPokemons;
+      },
+    },
+    
       created() {
         let infoPokemons = this.getPokemons();
         console.log("THESE ARE MY POKEMONS: ", this.infoPokemons)
