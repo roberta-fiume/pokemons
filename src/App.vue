@@ -26,7 +26,7 @@
             </v-card-title>
 
             <v-card-actions>
-              <v-btn flat class="purple accent-1" @click="showPokemons(), listPokemonsImages(), countPokemonsNames()" >get Pokemons</v-btn>
+              <v-btn flat class="purple accent-1" @click="showPokemons(), getPokemonsImages()" >get Pokemons</v-btn>
             </v-card-actions>
           </v-card>
         </v-flex>
@@ -77,11 +77,15 @@ import ListPokemons from "./ListPokemons.vue"
       getPokemonsImages() {
         console.log("Hello, I workkkkkkk!");
         const axios = require('axios');
+        let arrayPokemons =  this.listPokemonsImages();
+        console.log('THESE IS THE ARRAY IMAGEEEEESSSSS', this.imagesPokemons)
         axios.get('https://pokeapi.co/api/v2/pokemon-form/1/')
-        .then(response => (this.imagesPokemons = response.data.sprites.front_default))
+        .then(response => (this.imagesPokemons = arrayPokemons))
         .catch(function (error) {
         console.log("THIS IS THE ERROR:",error);
         })
+
+        console.log("THIS IS THE NEW ARRAYYYYYYY", this.imagesPokemons)
         return this.imagesPokemons
       },
 
@@ -98,8 +102,6 @@ import ListPokemons from "./ListPokemons.vue"
         this.showDivSinglePokemon = !this.showDivSinglePokemon
       },
 
-    
-      
       countPokemonsNames() {
         console.log("countPokemonsNames", this.infoPokemons )
           let totalPokemonsNames = 0;
@@ -112,25 +114,25 @@ import ListPokemons from "./ListPokemons.vue"
       },
 
         listPokemonsImages() {
-        let totalPokemonsNames = this.countPokemonsNames();
-        let apiLink = "https://pokeapi.co/api/v2/pokemon-form/";
-        console.log("THIS IS THE LENGHTTTTTT", totalPokemonsNames);
+          let totalPokemonsNames = this.countPokemonsNames();
+          let apiLink = "https://pokeapi.co/api/v2/pokemon-form/";
+          console.log("THIS IS THE LENGHTTTTTT", totalPokemonsNames);
           let arrayPokemons = [];
           var pokemons = 0;
-          for (var i = 1; i < totalPokemonsNames; i++) {
+          for (var i = 0; i < totalPokemonsNames; i++) {
             var pokemons = apiLink  + i + "/";
-            console.log("THIS IS MY STRING", pokemons);
+            // console.log("THIS IS MY STRING", pokemons);
             arrayPokemons.push(pokemons);
           }
-            console.log("THIS IS THE ARRAY WITH POKEMONS:", arrayPokemons)
-             return arrayPokemons;
+          console.log("THIS IS THE ARRAY WITH POKEMONS:", arrayPokemons)
+          return arrayPokemons;
       },
     },
     
       created() {
         let infoPokemons = this.getPokemons();
         console.log("THESE ARE MY POKEMONS: ", this.infoPokemons)
-        let imagesPokemons = this.getPokemonsImages();
+        // let imagesPokemons = this.getPokemonsImages();
         console.log("THESE ARE MY IMAGES: ", this.imagesPokemons)
       },
   }
