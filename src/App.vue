@@ -58,6 +58,7 @@ import ListPokemons from "./ListPokemons.vue"
         images: {
           mainImg: require('./assets/img/pokemons.jpg'),
         },
+        path: "https://raw.githubusercontent.com",
     
       }
     },
@@ -84,8 +85,6 @@ import ListPokemons from "./ListPokemons.vue"
         .catch(function (error) {
         console.log("THIS IS THE ERROR:",error);
         })
-
-        console.log("THIS IS THE NEW ARRAYYYYYYY", this.imagesPokemons)
         return this.imagesPokemons
       },
 
@@ -115,12 +114,11 @@ import ListPokemons from "./ListPokemons.vue"
 
         listPokemonsImages() {
           let totalPokemonsNames = this.countPokemonsNames();
-          let apiLink = "https://pokeapi.co/api/v2/pokemon-form/";
           console.log("THIS IS THE LENGHTTTTTT", totalPokemonsNames);
           let arrayPokemons = [];
           var pokemons = 0;
-          for (var i = 0; i < totalPokemonsNames; i++) {
-            var pokemons = apiLink  + i + "/";
+          for (var i = 1; i < totalPokemonsNames; i++) {
+            var pokemons = this.path + "/PokeAPI/sprites/master/sprites/pokemon/"+ i + ".png";
             // console.log("THIS IS MY STRING", pokemons);
             arrayPokemons.push(pokemons);
           }

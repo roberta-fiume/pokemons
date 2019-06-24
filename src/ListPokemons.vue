@@ -1,11 +1,68 @@
 <template>
     <div>
-     <div v-for="pokemon in infoPokemonsProp" :key="pokemon.name">
-        <h2><a v-bind:href="pokemon.url">NAME: {{pokemon.name}}</a></h2> 
-      </div>
-      <div v-for="image in imagesPokemonsProp" :key="image.front_default">
-              <img :src="path + 'PokeAPI/sprites/master/sprites/pokemon/'+ image.front_default + '.png'"/>
-      </div>
+        <div id="pokemons-box">
+            <div id="pokemons-list">
+                <div v-for="pokemon in infoPokemonsProp" :key="pokemon.name"  id="pokemons-names">
+                    <h2><a v-bind:href="pokemon.url">NAME: {{pokemon.name}}</a></h2>  
+                </div>
+            </div>
+            <div id="pokemons-div-img">
+                <div v-for="image in imagesPokemonsProp" :key="image"  id="pokemons-img"> 
+                    <img :src="image" id="img"/>   
+                </div> 
+            </div>
+        </div>
+        <v-layout justify-center>
+            <v-flex xs12 sm6>
+         
+            <v-card>
+                <v-container
+                fluid
+                grid-list-md
+                >
+                <v-layout row wrap>
+                    <v-flex
+                    v-for="card in cards"
+                    :key="card.title"
+                    v-bind="{ [`xs${card.flex}`]: true }"
+                    >
+                    <v-card>
+                        <v-img
+                        :src="card.src"
+                        height="200px"
+                        >
+                        <v-container
+                            fill-height
+                            fluid
+                            pa-2
+                        >
+                            <v-layout fill-height>
+                            <v-flex xs12 align-end flexbox>
+                                <span class="headline black--text" v-text="card.title"></span>
+                            </v-flex>
+                            </v-layout>
+                        </v-container>
+                        </v-img>
+
+                        <v-card-actions>
+                        <v-spacer></v-spacer>
+                        <v-btn icon>
+                            <v-icon>favorite</v-icon>
+                        </v-btn>
+                        <v-btn icon>
+                            <v-icon>bookmark</v-icon>
+                        </v-btn>
+                        <v-btn icon>
+                            <v-icon>share</v-icon>
+                        </v-btn>
+                        </v-card-actions>
+                    </v-card>
+                    </v-flex>
+                </v-layout>
+                </v-container>
+            </v-card>
+            </v-flex>
+        </v-layout>
     </div>
 </template>
 
@@ -21,8 +78,12 @@ export default {
 
     data() {
         return {
-            path: "https://raw.githubusercontent.com/",
-            images: []
+            images: [],
+            cards: [
+        { title: 'Pre-fab homes', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', flex: 6 },
+        { title: 'Favorite road trips', src: 'https://cdn.vuetifyjs.com/images/cards/road.jpg', flex: 6 },
+        { title: 'Best airlines', src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg', flex: 6 }
+      ]
         }
     },
 
@@ -38,11 +99,8 @@ export default {
         getImagesFromApi() {
             const axios = require('axios');
             for (var i = 0; i < this.imagesPokemonsProp.length; i ++) {
-                console.log("THIS THE PROP ARRAY IN FOR LOOP", this.imagesPokemonsProp);
-                console.log("THIS IS THE IIIIIII", i);
-                 console.log("THIS IS THE lengthhhhh", this.imagesPokemonsProp.length);
                 axios.get(this.imagesPokemonsProp[i])
-                    .then(response =>(this.images.push(response.data.sprites.front_default)))
+                    .then(response =>(this.images.push(response.data.sprites)))
                     .catch(function (error) {
                     console.log("THIS IS THE ERROR:",error);
                 })
@@ -51,27 +109,59 @@ export default {
         }
     },
 
-    created() {
-        console.log("THIS IS MY IMAGE PROP IN CREATED:", this.imagesPokemonsProp)
+    mounted() {
+        console.log("THIS IS MY IMAGE PROP IN MOUNTED:", this.imagesPokemonsProp)
     },
 
-
-    updated() {
-        let images = this.getImagesFromApi();
-        console.log("THIS IS MY ARRAY OF IMAGESSSSSSSSSSSS", images)
-    }
 }
 </script>
 
 
 <style>
-    .divSeePokemons {
+    #pokemons-box {
+    display: flex;
+    flex-direction: row;
+    width: 600px;
+    flex-wrap: wrap;
+    height: 100%;
+    align-items: center;
+    border: 2px solid lightcoral;
+  }
+
+  #pokemons-list {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  #pokemons-names{
+    width: 200px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid blue;
+  }
+
+    #img {
+        width: 170px;
+        height: 170px;
+        border: 2px solid green;
+    }
+  #pokemons-div-img {
+    display: flex;
+    flex-direction: column;
+    height: 100%; 
+  }
+
+  #pokemons-img {
+    margin-top: 0px;
+    width: 210px;
+    height: 210px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 300px;
-    height: 100%;
-    border: 2px solid lightcoral;
+    justify-content: center;
+    border: 2px solid pink;
   }
 
 </style>
