@@ -1,95 +1,42 @@
 <template>
     <div>
-        <v-container color="pink" row>
-            <!-- <div id="pokemons-list">
-                <div v-for="pokemon in infoPokemonsProp" :key="pokemon.name"  id="pokemons-names">
-                    <h2><a v-bind:href="pokemon.url">NAME: {{pokemon.name}}</a></h2>  
-                </div>
-            </div> -->
-         
-                <v-flex xs12 sm6>
-                    <v-card>
-                        <v-container fluid grid-list-md>
-                            <v-layout  width="200px" column wrap>
-                                <v-flex v-for="pokemon in infoPokemonsProp" :key="pokemon" v-bind="{ [`xs${pokemon.flex}`]: true }">
-                                    <v-card width="200px" height="200px"> 
-                                    <span class="headline black--text" v-text="pokemon.name"></span>
-                                    </v-card>
-                                </v-flex>
-                            </v-layout>
-                        </v-container>
-                    </v-card>
-                </v-flex>
-          
-           
-                <v-flex xs12 sm6>
-                    <v-card width="250px">
-                        <v-container fluid grid-list-md>
-                            <v-layout column wrap>
-                                <v-flex  v-for="image in imagesPokemonsProp" :key="image" v-bind="{ [`xs${image.flex}`]: true }">
-                                    <v-card width="200px"> 
-                                        <v-img :src="image"  width="200px" height="200px">
-                                        </v-img>
-                                        <v-card-actions>
-                                            <v-spacer></v-spacer>
-                                            <v-btn icon>
-                                                <v-icon>favorite</v-icon>
-                                            </v-btn>
-                                            <v-btn icon>
-                                                <v-icon>bookmark</v-icon>
-                                            </v-btn>
-                                            <v-btn icon>
-                                                <v-icon>share</v-icon>
-                                            </v-btn>
-                                        </v-card-actions>
-                                    </v-card>
-                                </v-flex>
-                            </v-layout>
-                        </v-container>
-                    </v-card>
-                </v-flex>
-           
+        <v-container align-top justify-center row wrap width="750px" class="purple accent-2" id="cont">
+            <v-card width="250px" class="purple lighten-5">
+                <v-container fluid grid-list-md>
+                    <v-layout column wrap>
+                        <v-flex v-for="pokemon in infoPokemonsProp" :key="pokemon.name " v-bind="{ [`xs${pokemon.flex}`]: true }">
+                            <div  id="card1">
+                                <span class="headline grey--text" v-text="pokemon.name"></span>
+                            </div>
+                        </v-flex>
+                    </v-layout>
+                </v-container>
+            </v-card>
+            <v-card width="350px" class="purple lighten-5">
+                <v-container fluid grid-list-md>
+                    <v-layout column wrap class="align-center">
+                        <v-flex v-for="image in imagesPokemonsProp" :key="image" v-bind="{ [`xs${image.flex}`]: true }">
+                            <div width="200px" justify-center id="div-img" >
+                                <v-img :src="image"  width="200px" height="150px">
+                                </v-img>
+                                <v-card-actions class="justify-center purple lighten-5" id="div-icons">
+                                    <v-btn icon>
+                                        <v-icon>favorite</v-icon>
+                                    </v-btn>
+                                    <v-btn icon>
+                                        <v-icon>bookmark</v-icon>
+                                    </v-btn>
+                                    <v-btn icon>
+                                        <v-icon>share</v-icon>
+                                    </v-btn>
+                                </v-card-actions>
+                            </div>
+                        </v-flex>
+                    </v-layout>
+                </v-container>
+            </v-card>
         </v-container>
-       
 
-   
-
-
-        
-
-
-        
-        <v-layout justify-center>
-            <v-flex xs12 sm6>
-                <v-card>
-                    <v-container fluid grid-list-md>
-                        <v-layout column wrap>
-                            <v-flex v-for="card in cards" :key="card.title" v-bind="{ [`xs${card.flex}`]: true }">
-                                <v-card> 
-                                    <v-flex xs12 align-end flexbox>
-                                        <span class="headline black--text" v-text="card.title"></span>
-                                    </v-flex>
-                                    <v-img :src="card.src" height="200px">
-                                    </v-img>
-                                    <v-card-actions>
-                                        <v-spacer></v-spacer>
-                                        <v-btn icon>
-                                            <v-icon>favorite</v-icon>
-                                        </v-btn>
-                                        <v-btn icon>
-                                            <v-icon>bookmark</v-icon>
-                                        </v-btn>
-                                        <v-btn icon>
-                                            <v-icon>share</v-icon>
-                                        </v-btn>
-                                    </v-card-actions>
-                                </v-card>
-                            </v-flex>
-                        </v-layout>
-                    </v-container>
-                </v-card>
-            </v-flex>
-        </v-layout>
     </div>
 </template>
 
@@ -145,7 +92,31 @@ export default {
 
 
 <style>
-    #pokemons-box {
+
+#cont {
+    display: flex;
+    flex-direction: row;
+}
+
+#card1{
+ 
+    width: 200px;
+    height: 202px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+#div-img {
+    border: 2px solid #E1BEE7;
+   /* border: 2px solid #EA80FC; */
+
+}
+
+#div-icons {
+    border: 2px solid #E1BEE7;
+}
+    /* #pokemons-box {
     display: flex;
     flex-direction: row;
     width: 600px;
@@ -189,6 +160,6 @@ export default {
     align-items: center;
     justify-content: center;
     border: 2px solid pink;
-  }
+  } */
 
 </style>

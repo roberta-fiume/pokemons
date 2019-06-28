@@ -1,6 +1,6 @@
 <template>
   <v-app>
-
+      <router-view></router-view>
       <div id="wrapping-div">
         <div class="divSeePokemons" v-if="showDivPokemon">
           <ListPokemons  :infoPokemonsProp="infoPokemons" :imagesPokemonsProp="imagesPokemons"/>
