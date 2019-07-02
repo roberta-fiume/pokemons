@@ -1,0 +1,32 @@
+<template>
+    <div>
+        <pokemon-component v-for="pokemon in infoPokemonsProp" :key="pokemon.name" :pokemonName="pokemon.name" :pokemonIndex="index+1"> </pokemon-component>
+    </div>
+</template> 
+
+<script> 
+import PokemonComponent from "./PokemonComponent.vue"
+
+
+export default {
+    props: ['infoPokemonsProp'],  
+    components: {
+       PokemonComponent 
+    },
+
+    data() {
+        return {
+
+        }
+    },
+
+      watch: {
+        imagesPokemonsProp() {
+            console.log("I am changeddddd:",this.infoPokemonsProp);
+      
+        }
+     
+    },
+}
+</script>
+

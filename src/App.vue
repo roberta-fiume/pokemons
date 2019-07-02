@@ -2,9 +2,14 @@
   <v-app>
       <router-view></router-view>
       <div id="wrapping-div">
-        <div class="divSeePokemons" v-if="showDivPokemon">
-          <ListPokemons  :infoPokemonsProp="infoPokemons" :imagesPokemonsProp="imagesPokemons"/>
-        </div>
+
+          <div class="divSeePokemons" v-if="showDivPokemon">
+              <ListComponent :infoPokemonsProp="infoPokemons"/>
+          </div>
+
+        <!-- <div class="divSeePokemons" v-if="showDivPokemon">
+          <ListPokemons :infoPokemonsProp="infoPokemons" :imagesPokemonsProp="imagesPokemons"/>
+        </div> -->
 
         <div class="divSinglePokemon" v-if="showDivSinglePokemon">
           <SinglePokemon :infoSinglePokemonProp="infoPokemons" />
@@ -26,11 +31,11 @@
             </v-card-title>
 
             <v-card-actions>
-              <v-btn flat class="purple accent-1" @click="showPokemons(), getPokemonsImages()" >get Pokemons</v-btn>
+              <v-btn flat class="purple accent-1" @click="showPokemons(), getPokemonsImages()" ><li><router-link to="/about"> Get Pokemons</router-link></li></v-btn>
             </v-card-actions>
           </v-card>
         </v-flex>
-  </v-layout>
+      </v-layout>
 
       
   </v-app>
@@ -39,6 +44,7 @@
 <script>
 import SinglePokemon from "./SinglePokemon.vue"
 import ListPokemons from "./ListPokemons.vue"
+import ListComponent from "./ListComponent.vue"
 
 
   export default {
@@ -46,6 +52,7 @@ import ListPokemons from "./ListPokemons.vue"
     name: 'App',
      components: {
       ListPokemons,
+      ListComponent,
       SinglePokemon
     },
    
@@ -64,8 +71,8 @@ import ListPokemons from "./ListPokemons.vue"
     },
 
     methods: {
-      getPokemons() {
-        console.log("Hello, I work!");
+      getPokemonsNames() {
+        console.log("Hello, I work! I am GET POKEMONS");
         const axios = require('axios');
         axios.get('https://pokeapi.co/api/v2/pokemon/')
         .then(response => (this.infoPokemons = response.data.results))
@@ -128,7 +135,7 @@ import ListPokemons from "./ListPokemons.vue"
     },
     
       created() {
-        let infoPokemons = this.getPokemons();
+        let infoPokemons = this.getPokemonsNames();
         console.log("THESE ARE MY POKEMONS: ", this.infoPokemons)
         // let imagesPokemons = this.getPokemonsImages();
         console.log("THESE ARE MY IMAGES: ", this.imagesPokemons)

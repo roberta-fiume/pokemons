@@ -1,7 +1,7 @@
 <template>
     <div>
-        <v-container align-top justify-center row wrap width="750px" class="purple accent-2" id="cont">
-            <v-card width="250px" class="purple lighten-5">
+        <v-container align-top justify-center row wrap width="750px" class="white" id="cont">
+            <div width="250px" class="white" >
                 <v-container fluid grid-list-md>
                     <v-layout column wrap>
                         <v-flex v-for="pokemon in infoPokemonsProp" :key="pokemon.name " v-bind="{ [`xs${pokemon.flex}`]: true }">
@@ -11,15 +11,15 @@
                         </v-flex>
                     </v-layout>
                 </v-container>
-            </v-card>
-            <v-card width="350px" class="purple lighten-5">
-                <v-container fluid grid-list-md>
+            </div>
+            <div width="350px" class="white">
+                <div fluid grid-list-md>
                     <v-layout column wrap class="align-center">
                         <v-flex v-for="image in imagesPokemonsProp" :key="image" v-bind="{ [`xs${image.flex}`]: true }">
                             <div width="200px" justify-center id="div-img" >
                                 <v-img :src="image"  width="200px" height="150px">
                                 </v-img>
-                                <v-card-actions class="justify-center purple lighten-5" id="div-icons">
+                                <v-card-actions class="justify-center white" id="div-icons">
                                     <v-btn icon>
                                         <v-icon>favorite</v-icon>
                                     </v-btn>
@@ -33,8 +33,8 @@
                             </div>
                         </v-flex>
                     </v-layout>
-                </v-container>
-            </v-card>
+                </div>
+            </div>
         </v-container>
 
     </div>
@@ -47,17 +47,9 @@
 export default {
     props: ['infoPokemonsProp', 'imagesPokemonsProp'],
    
-
-
-
     data() {
         return {
             images: [],
-            cards: [
-        { title: 'Pre-fab homes', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', flex: 6 },
-        { title: 'Favorite road trips', src: 'https://cdn.vuetifyjs.com/images/cards/road.jpg', flex: 6 },
-        { title: 'Best airlines', src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg', flex: 6 }
-      ]
         }
     },
 
@@ -108,8 +100,8 @@ export default {
 }
 
 #div-img {
-    border: 2px solid #E1BEE7;
-   /* border: 2px solid #EA80FC; */
+    /* border: 2px solid #E1BEE7;
+   border: 2px solid #EA80FC; */
 
 }
 
