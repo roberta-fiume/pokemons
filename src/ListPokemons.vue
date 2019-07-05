@@ -75,9 +75,9 @@ export default {
         }
     },
 
-    mounted() {
-        console.log("THIS IS MY IMAGE PROP IN MOUNTED:", this.imagesPokemonsProp)
-    },
+    // mounted() {
+    //     console.log("THIS IS MY IMAGE PROP IN MOUNTED:", this.imagesPokemonsProp)
+    // },
 
 }
 </script>

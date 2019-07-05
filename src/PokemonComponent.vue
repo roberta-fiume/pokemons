@@ -1,68 +1,59 @@
 <template>
     <div>
         <h2>{{pokemonName}}</h2>
-        <!-- <v-img :src="image"  width="200px" height="150px"></v-img> -->
+          <v-img :src="linksForImages" width="200px" height="150px"></v-img>
     </div>
 </template>
 
 <script>
 export default {
-    props: ['pokemonName','pokemonIndex'],
+
+
+    props: {
+        pokemonName: String,
+        pokemonUrl: String,
+        indexProp: Object,
+    },
+
     data() {
         return {
-            path: "https://raw.githubusercontent.com",
-            imagesPokemons: "images",
-            infoPokemons: "pokemons",
-
+            linksForImages: "",
         }
     },
 
     created() {
-       let pokemons = this.getPokemonsImages();
-       console.log("Pokemonssssssssssss:", pokemons)
+       console.log('I am the INDEX', this.indexProp);
+          let linkImages = this.getLinksForImages();
+          console.log("THIS IS THE LINK FOR THE IMAGES IN CREATED", this.linkImages)
+    },
+
+       watch: {
+         linksForImages() {
+            console.log("I am changeddddd:",this.linksForImages);
+             this.getImagesFromApi() 
+           
+        } 
     },
 
     methods: {
-
-    //     countPokemonsNames() {
-    //     console.log("countPokemonsNames", this.infoPokemons )
-    //       let totalPokemonsNames = 0;
-    //       if (this.infoPokemons == undefined) {
-    //         return totalPokemonsNames;
-    //       }
-    //         totalPokemonsNames = this.infoPokemons.length
-    //         console.log("THIS IS THE TOTAL:", totalPokemonsNames)
-    //       return totalPokemonsNames;
-    //   },
-
-    //     listPokemonsImages() {
-    //       let totalPokemonsNames = this.countPokemonsNames();
-    //       console.log("THIS IS THE LENGHTTTTTT", totalPokemonsNames);
-    //       let arrayPokemons = [];
-    //       var pokemons = 0;
-    //       for (var i = 1; i < totalPokemonsNames; i++) {
-    //         var pokemons = this.path + "/PokeAPI/sprites/master/sprites/pokemon/"+ i + ".png";
-    //         // console.log("THIS IS MY STRING", pokemons);
-    //         arrayPokemons.push(pokemons);
-    //       }
-    //       console.log("THIS IS THE ARRAY WITH POKEMONS:", arrayPokemons)
-    //       return arrayPokemons;
-    //   },
-
-        getPokemonsImages() {
-        console.log("I AM GET IN POKEMON COMPONENT");
-        const axios = require('axios');
-        axios.get('https://pokeapi.co/api/v2/pokemon-form/'+ pokemonIndex)
-        .then(response => (this.imagesPokemons = response.data.result.url))
-        .catch(function (error) {
-        console.log("THIS IS THE ERROR:",error);
-        })
-        return this.imagesPokemons
-      },
-    }
-    
-
-       
+        getLinksForImages() {
+            const axios = require('axios');
+            console.log("THIS IS THE URLLLL", this.indexProp.url)
+            axios.get(this.indexProp.url)
+            .then(response => (this.linksForImages = response.data.forms[0].url));
+          
+        },
+           
+        getImagesFromApi() {
+            const axios = require('axios');
+                console.log("THIS IS THE LINKKKKKKKK FOR IMAGES", this.linksForImages)
+                axios.get(this.linksForImages)
+                .then(response => (this.linksForImages = response.data.sprites.front_default))
+                .catch(function (error) {
+                console.log("THIS IS THE ERROR:",error);
+            })
+        }
+    }     
 }
  
 </script>

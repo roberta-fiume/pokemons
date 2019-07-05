@@ -1,6 +1,6 @@
 <template>
     <div>
-        <pokemon-component v-for="pokemon in infoPokemonsProp" :key="pokemon.name" :pokemonName="pokemon.name" :pokemonIndex="index+1"> </pokemon-component>
+        <pokemon-component v-for="pokemon in infoPokemonsProp" :key="pokemon.name" :pokemonName="pokemon.name" :indexProp="pokemon"> </pokemon-component>
     </div>
 </template> 
 

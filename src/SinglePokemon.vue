@@ -27,18 +27,18 @@
             }
         },
         
-        created() {
-           console.log("I AM CREATED AND MY VALUE IS: ",this.infoSinglePokemonProp);     
-        },
+        // created() {
+        //    console.log("I AM CREATED AND MY VALUE IS: ",this.infoSinglePokemonProp);     
+        // },
 
-        beforeUpdate() {
-              console.log("AM I UPDATED?",this.infoSinglePokemonProp)
-        },
+        // beforeUpdate() {
+        //       console.log("AM I UPDATED?",this.infoSinglePokemonProp)
+        // },
 
-        updated() {
-            this.infoSinglePokemonProp;
-            console.log(" I AM UPDATED",this.infoSinglePokemonProp)
-        },
+        // updated() {
+        //     this.infoSinglePokemonProp;
+        //     console.log(" I AM UPDATED",this.infoSinglePokemonProp)
+        // },
      
         mounted() {
             this.currentPokemonIndex = 0;
