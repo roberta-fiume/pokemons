@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
-import ListPokemons from './ListPokemons.vue'
+
 
 Vue.use(Router)
 

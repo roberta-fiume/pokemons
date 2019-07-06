@@ -1,8 +1,10 @@
 <template>
-    <div>
-        <h2>{{pokemonName}}</h2>
-          <v-img :src="linksForImages" width="200px" height="150px"></v-img>
-    </div>
+    <v-layout>
+        <v-flex>
+            <h2>Name: {{pokemonName}}</h2>
+            <v-img :src="linksForImages" width="200px" height="150px"></v-img>
+        </v-flex>
+    </v-layout>
 </template>
 
 <script>
