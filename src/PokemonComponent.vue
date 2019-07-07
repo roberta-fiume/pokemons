@@ -13,15 +13,27 @@
             <v-card-actions>
             <v-list-tile class="grow">
                     <v-layout align-center justify-start>
-                        <v-icon class="mr-1">star</v-icon>
-                        <v-icon class="ml-2">thumb_up_alt</v-icon>
+                        <v-btn icon>
+                            <v-icon>star</v-icon>
+                        </v-btn>
+                        
+                        <v-btn icon>
+                            <v-icon>thumb_up_alt</v-icon>
+                        </v-btn>
+                       
                     </v-layout>
 
                     <v-layout align-center justify-end>
-                        <v-icon class="mr-1">favorite</v-icon>
-                        <span class="subheading mr-2">256</span>
-                        <v-icon class="mr-1">share</v-icon>
-                        <span class="subheading">SHARE</span>
+                        <v-btn icon>
+                            <v-icon>favorite</v-icon>
+                        </v-btn>
+                      
+                      <v-btn icon >
+                        <v-icon>share</v-icon>
+                         </v-btn>
+                        <span class="body-1 ml-1">SHARE</span>
+            
+                     
                     </v-layout>
             </v-list-tile>
             </v-card-actions>

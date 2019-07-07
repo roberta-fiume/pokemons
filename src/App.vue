@@ -15,9 +15,7 @@
       <v-layout v-if="layout">
         <v-flex xs12 sm6 offset-sm3>
           <v-card>
-            <v-img
-            :src="images.mainImg" class="img">
-             </v-img>
+            <v-img :src="images.mainImg" class="img"></v-img>
 
             <v-card-title primary-title>
               <div>
@@ -26,7 +24,7 @@
             </v-card-title>
 
             <v-card-actions>
-              <v-btn flat class="purple accent-1" @click="showPokemons()" ><li><router-link to="/about"> Get Pokemons</router-link></li></v-btn>
+              <v-btn flat class="purple accent-1" @click="showPokemons()" >Get Pokemons</v-btn>
             </v-card-actions>
           </v-card>
         </v-flex>
