@@ -2,15 +2,15 @@
   <v-app>
       <router-view></router-view>
 
-       <div id="wrapping-div">
+       <div class="wrap-div ma-5">
+          <div class="divSinglePokemon" v-if="showDivSinglePokemon">
+            <SinglePokemon :infoSinglePokemonProp="infoPokemons" />
+          </div>
+
           <div class="divSeePokemons" v-if="showDivPokemon">
               <ListComponent :infoPokemonsProp="infoPokemons"/>
           </div>
-
-        <div class="divSinglePokemon" v-if="showDivSinglePokemon">
-          <SinglePokemon :infoSinglePokemonProp="infoPokemons" />
-        </div>
-      </div>
+       </div>
 
       <v-layout v-if="layout">
         <v-flex xs12 sm6 offset-sm3>
@@ -135,6 +135,12 @@
 </script>
 
 <style>
+
+.wrap-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
 
 
   
