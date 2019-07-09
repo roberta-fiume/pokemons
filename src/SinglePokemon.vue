@@ -1,19 +1,22 @@
 <template>
     <div>
-        <div v-for="pokemon in  infoSinglePokemonProp" id="div-pokemons">
-         <br/>
-        </div>
-
-        <div>
-             <h2><a>NAME: {{pokemonName}}</a></h2> 
-       
-                 <!-- <h2><a  v-bind:href="pokemon.url">NAME: {{infoSinglePokemonProp[0].name}}</a></h2>  -->
-        </div>
-
-     <div>
-         <button @click="goToNextPokemon()">NEXT</button>
-     </div>
+        <v-flex xs12>
+            <v-card color="purple lighten-2" class="white--text">
+              <v-card-title primary-title>
+                <div>
+                  <div class="body-1"><h2><a class="white--text"> Name: {{pokemonName}}</a></h2> </div>
+                  <span>Listen to your favorite artists and albums whenever and wherever, online and offline.</span>
+                </div>
+              </v-card-title>
+              <v-card-actions>
+                <v-btn flat dark   @click="goToPreviousPokemon">PREVIOUS</v-btn>
+                <v-btn flat dark  @click="goToNextPokemon">NEXT</v-btn>
+              </v-card-actions>
+            </v-card>
+        </v-flex>
     </div>
+
+ 
  
 </template>
 
@@ -56,10 +59,34 @@
             goToNextPokemon() {
                 let pokemonName = this.infoSinglePokemonProp[this.currentPokemonIndex].name;
                 this.currentPokemonIndex++;
-                
+                console.log("THIS IS THE CURRENT POKEMON INDEX IN NEXT:", this.currentPokemonIndex)
+
                 console.log("THIS IS MY PROP", pokemonName);
                 this.pokemonName = pokemonName;
-            }
+
+                if (pokemonName === "raticate") {
+                    this.currentPokemonIndex = 0;
+                    this.currentPokemonIndex++;
+                }
+            },
+
+               goToPreviousPokemon() {
+                let pokemonName = this.infoSinglePokemonProp[this.currentPokemonIndex].name;
+                this.currentPokemonIndex--;
+
+                console.log("THIS IS MY PROP in previous", pokemonName);
+
+                console.log("THIS IS THE CURRENT POKEMON INDEX IN  PREVIOUS:", this.currentPokemonIndex)
+
+                this.pokemonName = pokemonName;
+
+                 if (pokemonName === "bulbasaur") {
+                    this.currentPokemonIndex = 0;
+                    this.currentPokemonIndex--;
+                }
+            },
+
+
         }
   
     }
@@ -71,12 +98,5 @@
     display: none;
 }
  
-   .divSinglePokemon {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 300px;
-    height: 100%;
-    border: 2px solid rgb(52, 153, 216);
-  }
+
 </style>
