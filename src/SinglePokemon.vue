@@ -62,7 +62,7 @@
                 pokemonName: "",
                 previousButton: false,
                 nextButton: true,
-                gifsArray: ['https://media.giphy.com/media/SfjCRiDNA951m/giphy.gif', 'https://media.giphy.com/media/GA3BbCXTEm6hq/giphy.gif', 'https://media.giphy.com/media/905ATvUcKqN0I/giphy.gif','https://media.giphy.com/media/yhfTY8JL1wIAE/giphy.gif', 'https://media.giphy.com/media/u1k1kpDZSw5sA/giphy.gif', 'https://media.giphy.com/media/48cVVAf9vam9W/giphy.gif', 'https://media.giphy.com/media/fjgqYjVkzfQ9a/giphy.gif', 'https://media.giphy.com/media/jymDyv7MzGgzC/giphy.gif', 'https://media.giphy.com/media/tDT5nL8EXbQhW/giphy.gif', 'https://media.giphy.com/media/ZKaR6dsqUELIs/giphy.gif', 'https://media.giphy.com/media/LG6QazCB6tOCI/giphy.gif'],
+                gifsArray: ['https://media.giphy.com/media/I2nZMy0sI0ySA/giphy.gif', 'https://media.giphy.com/media/GA3BbCXTEm6hq/giphy.gif', 'https://media.giphy.com/media/905ATvUcKqN0I/giphy.gif','https://media.giphy.com/media/yhfTY8JL1wIAE/giphy.gif', 'https://pkmneclipse.net/images/letsgo/kanto-normal/Charmeleon.gif', 'https://media.giphy.com/media/48cVVAf9vam9W/giphy.gif', 'https://media.giphy.com/media/fjgqYjVkzfQ9a/giphy.gif', 'https://media.giphy.com/media/jymDyv7MzGgzC/giphy.gif', 'https://media.giphy.com/media/tDT5nL8EXbQhW/giphy.gif', 'https://media.giphy.com/media/ZKaR6dsqUELIs/giphy.gif', 'https://pkmneclipse.net/images/letsgo/kanto-normal/Metapod.gif', 'https://media.giphy.com/media/Ktr7TBN3hV39u/giphy.gif', 'https://media.giphy.com/media/anLxZPExDZZ4I/giphy.gif', 'https://pkmneclipse.net/images/letsgo/kanto-normal/Kakuna.gif', 'https://pkmneclipse.net/images/letsgo/kanto-normal/Beedrill.gif', 'https://pkmneclipse.net/images/letsgo/kanto-normal/Pidgey.gif', 'https://media.giphy.com/media/hJugcAt6VIzMA/giphy.gif', 'https://pkmneclipse.net/images/letsgo/kanto-normal/Pidgeot.gif', 'https://pkmneclipse.net/images/letsgo/kanto-normal/Rattata.gif', 'https://pkmneclipse.net/images/letsgo/kanto-normal/Raticate.gif'],
                 singleGif: "",
                 currentGifIndex: ""
               
@@ -105,6 +105,9 @@
                     this.pokemonName = pokemonName;
                     console.log("THIS IS THE CURRENT POKEMON INDEX IN  PREVIOUS:", this.currentPokemonIndex)
                     console.log("THIS IS THE CURRENT POKEMON NAME IN  PREVIOUS:", this.pokemonName);
+
+                    this.goToPreviousGif();
+
                         if (this.pokemonName === "bulbasaur") {
                             this.previousButton = false;
                         }
@@ -117,7 +120,16 @@
                     console.log("THIS IS THE CURRENT GIF INDEX IN NEXT:", this.currentGifIndex)
                     console.log("THIS IS THE CURRENT POKEMON GIF IN NEXT:", singleGif )
                     this.singleGif = singleGif;   
-                }
+                },
+
+                goToPreviousGif(){
+                    this.currentGifIndex--; 
+                    let singleGif = this.gifsArray[this.currentGifIndex];
+                    this.singleGif = singleGif; 
+                    console.log("THIS IS THE CURRENT GIF INDEX IN  PREVIOUS:", this.currentGifIndex)
+                    console.log("THIS IS THE CURRENT GIF IN  PREVIOUS:", this.singleGif);
+                  
+                },
         }
   
     }
