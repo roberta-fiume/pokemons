@@ -1,13 +1,13 @@
 <template>
-  <v-app>
-      <router-view></router-view>
+  <v-app class="purple lighten-5" >
+      
 
        <div class="wrap-div ma-5">
-          <div class="divSinglePokemon" v-if="showDivSinglePokemon">
+          <div v-if="showDivSinglePokemon">
             <SinglePokemon :infoSinglePokemonProp="infoPokemons" />
           </div>
 
-          <div class="divSeePokemons" v-if="showDivPokemon">
+          <div  class="purple lighten-2" v-if="showDivPokemon">
               <ListComponent :infoPokemonsProp="infoPokemons"/>
           </div>
        </div>
@@ -17,14 +17,14 @@
           <v-card>
             <v-img :src="images.mainImg" class="img"></v-img>
 
-            <v-card-title primary-title>
+            <v-card-title primary-title id="title">
               <div>
                 <h3 class="headline mb-0">Welcome to Pokemons' App</h3>
               </div>
             </v-card-title>
 
-            <v-card-actions>
-              <v-btn flat class="purple accent-1" @click="showPokemons()" >Get Pokemons</v-btn>
+            <v-card-actions id="wrap-button"> 
+              <v-btn block flat class="purple accent-1" @click="showPokemons()" >Get Pokemons</v-btn>
             </v-card-actions>
           </v-card>
         </v-flex>
@@ -110,19 +110,6 @@
       //     return totalPokemonsNames;
       // },
 
-      //   listPokemonsImages() {
-      //     let totalPokemonsNames = this.countPokemonsNames();
-      //     console.log("THIS IS THE LENGHTTTTTT", totalPokemonsNames);
-      //     let arrayPokemons = [];
-      //     var pokemons = 0;
-      //     for (var i = 1; i < totalPokemonsNames; i++) {
-      //       var pokemons = this.path + "/PokeAPI/sprites/master/sprites/pokemon/"+ i + ".png";
-      //       // console.log("THIS IS MY STRING", pokemons);
-      //       arrayPokemons.push(pokemons);
-      //     }
-      //     console.log("THIS IS THE ARRAY WITH POKEMONS:", arrayPokemons)
-      //     return arrayPokemons;
-      // },
     },
     
       created() {
@@ -138,6 +125,20 @@
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+}
+
+#title {
+  display: flex;
+  justify-content: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#wrap-button {
+  display: flex;
+  justify-content: column;
+  align-items: center;
+  justify-content: center;
 }
 
 

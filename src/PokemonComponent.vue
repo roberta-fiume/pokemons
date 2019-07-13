@@ -1,12 +1,12 @@
 <template>
     <div>
-        <v-card class="ma-5" color="purple lighten-2" dark max-width="400" >
+        <v-card class="ma-5" color="purple lighten-3" dark max-width="400" >
             <v-card-title>
             <v-icon left>create</v-icon>
             <span class="title font-weight-light">Name: </span><h2 class="ml-2">{{pokemonName}}</h2>
             </v-card-title>
 
-            <v-card class="purple lighten-4"  width="350px">
+            <v-card class="purple lighten-5"  width="350px">
                 <v-layout width="300px" align-center justify-center><img :src="linksForImages" width="200px" height="200px" /></v-layout >
             </v-card>
 
