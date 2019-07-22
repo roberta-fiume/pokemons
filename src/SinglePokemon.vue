@@ -25,7 +25,9 @@
  
 </template>
 
-<script>
+<script> 
+import firebase from 'firebase/app'
+import fb from '@/fb'
 
     export default {
 
@@ -45,10 +47,35 @@
 
             this.infoSinglePokemonProp;
 
-            this.currentGifIndex = 0;
-            this.singleGif = this.gifsArray[this.currentGifIndex];
-            console.log("THIS IS SINGLE GIF", this.singleGif)
+            // this.currentGifIndex = 0;
+            // this.singleGif = this.gifsArray[this.currentGifIndex];
+            // console.log("THIS IS SINGLE GIF", this.singleGif);
 
+          
+
+            
+          var storage = firebase.storage();
+   
+
+            let storageRef = storage.ref();
+            let videoRef = storageRef.child('videos/bulbasaur.mp4');
+                   console.log("THIS IS CONTEXT BEFORE THE FUNCTION", this)
+                function getVideosFromStorage() {
+                     videoRef.getDownloadURL().then(function(url)                             {
+                    console.log("THIS IS THE URL", url);
+                      console.log("THIS IS CONTEXT INSIDE THE FUNCTION", this)
+                    let bulbasaur = url;
+                    //   this.singleGif = bulbasaur;
+                    console.log("this is BULBASAUR", bulbasaur);
+                    //  console.log("THIS IS THE SINGLE GIF",this.singleGif);
+                    }).catch(function(error) {
+                        console.error(error);
+                    });
+                }
+            console.log("THIS IS CONTEXT AFTER THE FUNCTION", this)
+            const getVideosFromStorageFunc = getVideosFromStorage.bind(this);
+            getVideosFromStorageFunc();
+           
         },
         
         computed: {
@@ -86,7 +113,7 @@
                 'https://pkmneclipse.net/images/letsgo/kanto-normal/Rattata.gif', 
                 'https://pkmneclipse.net/images/letsgo/kanto-normal/Raticate.gif'
                 ],
-                singleGif: "",
+                singleGif: "hello",
                 currentGifIndex: ""
               
             }
@@ -153,6 +180,8 @@
                     console.log("THIS IS THE CURRENT GIF IN  PREVIOUS:", this.singleGif);
                   
                 },
+
+     
         }
   
     }
