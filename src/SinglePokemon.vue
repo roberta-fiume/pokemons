@@ -37,6 +37,8 @@ import db from '@/fb'
             },
 
             urlsCollection() {
+                  this.orderUrls(); 
+                  
                 console.log("VIDEO COLLECTION IN WATCH", this.urlsCollection);
                 this.singleVideo = this.urlsCollection[this.currentVideoIndex];
                 console.log("THIS IS THE SINGLE VIDEO", this.singleVideo)
@@ -58,6 +60,7 @@ import db from '@/fb'
             this.currentVideoIndex = 0;
             this.urlsCollection = this.getVideoCollection();
             console.log("VIDEO COLLECTION", this.urlsCollection);
+           
             // this.singleVideo = this.docsVideos[this.currentVideoIndex];
             //   console.log("THIS IS DOCS VIDEOS", this.docsVideos);
             // console.log("THIS IS THE CONTEXT", this);
@@ -120,7 +123,9 @@ import db from '@/fb'
                 currentVideoIndex: "",
                 ideosUrls: [],
                 docsVideos: [],
-                urlsCollection: []
+                urlsCollection: [],
+                pokemons: ["bulbasaur", "ivysaur", "venusaur", "charmander", "charmeleon", "charizard", "squirtle", "wartortle", "blastoise",
+                "caterpie", "metapod", "butterfree", "weedle", "kakuna", "beedrill", "pidgey", "pidgeotto", "rattata", "raticate" ] 
              
             }
         },
@@ -195,7 +200,7 @@ import db from '@/fb'
                     // console.log("THIS IS THE URL",response.docs[0]._document.data.internalValue.root.value.internalValue);
                     for (var i=0; i < response.docs.length; i++) {
                         let urls = response.docs[i]._document.data.internalValue.root.value.internalValue;
-                        // console.log("URL IN LOOP",urls);
+                        console.log("URL IN LOOP",urls);
                            this.docsVideos.push(urls);
                     }
                      this.urlsCollection = this.docsVideos
@@ -203,10 +208,25 @@ import db from '@/fb'
                     });
 
                     return this.urlsCollection
-               
-                    // console.log("this is my docs videos", this.docsVideos);
-                    // console.log("THIS IS THE CONTEXT IN API CALL", this)
                 },
+
+                orderUrls() {
+                    let bulbasaur = this.urlsCollection[0].replace("charmander", "bulbasaur");
+                    console.log("BULBASAUR", bulbasaur);
+                    let ivysaur = this.urlsCollection[1].replace("beedrill", "ivysaur");
+                    console.log("IVYSAUR", ivysaur);
+                    let venusaur = this.urlsCollection[2].replace("blastoise", "venusaur");
+                    console.log("VENUSAUR", venusaur);
+                    let charmander = this.urlsCollection[3].replace("bulbasaur", "charmander");
+                    console.log("CHARMANDER", charmander);
+                    let charmeleon = this.urlsCollection[4].replace("butterfree", "charmeleon");
+                    console.log("CHARMELEON", charmeleon);
+                    let charizard = this.urlsCollection[5].replace("caterpie", "charizard");
+                    console.log("CHARIZARD", charizard);
+        
+                }
+
+               
 
                 
            
