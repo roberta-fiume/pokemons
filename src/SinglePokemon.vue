@@ -9,7 +9,7 @@
                    <span class="title font-weight-bold white--text text--lighten-2 ml-1">{{pokemonName}}</span>
                   </div>
                   <div>
-                       <video width="350" controls :src="singleGif"></video>
+                       <video width="350" controls :src="singleVideo"></video>
                   </div>
                 </div>
               </v-card-title>
@@ -27,7 +27,7 @@
 
 <script> 
 import firebase from 'firebase/app'
-import fb from '@/fb'
+import db from '@/fb'
 
     export default {
 
@@ -36,14 +36,10 @@ import fb from '@/fb'
                 console.log("I am changed:", this.infoSinglePokemonProp)
             },
 
-            singleGif() {
-                   let linksUrls = [];
-                    let pokemons = ['ivysaur', 'venusaur', 'charmander'];
-                    for (let i = 0; i < pokemons.length; i++) {
-                       let newUrl = this.singleGif.replace("bulbasaur", pokemons[i]);
-                        linksUrls.push(newUrl);
-                    } 
-                 console.log("I AM THE URLS ARRAY:", linksUrls) 
+            urlsCollection() {
+                console.log("VIDEO COLLECTION IN WATCH", this.urlsCollection);
+                this.singleVideo = this.urlsCollection[this.currentVideoIndex];
+                console.log("THIS IS THE SINGLE VIDEO", this.singleVideo)
             }
           
           
@@ -51,7 +47,7 @@ import fb from '@/fb'
         
      
         mounted() {
-            console.log("this is singleGif in MOUNTED", this.singleGif)
+            console.log("this is singleVideo in MOUNTED", this.singleVideo)
             this.currentPokemonIndex = 0;
             this.pokemonName = this.infoSinglePokemonProp[this.currentPokemonIndex].name;
             console.log("THIS IS THE INDEX IN MOUNTED:", this.currentPokemonIndex);
@@ -59,24 +55,30 @@ import fb from '@/fb'
             console.log("THIS IS THE POKEMON NAME INDEXXX:", this.pokemonName);
             this.infoSinglePokemonProp;
 
-            this.currentGifIndex = 0;
-            // this.singleGif = this.gifsArray[this.currentGifIndex];
-            // console.log("THIS IS SINGLE GIF", this.singleGif)
+            this.currentVideoIndex = 0;
+            this.urlsCollection = this.getVideoCollection();
+            console.log("VIDEO COLLECTION", this.urlsCollection);
+            // this.singleVideo = this.docsVideos[this.currentVideoIndex];
+            //   console.log("THIS IS DOCS VIDEOS", this.docsVideos);
+            // console.log("THIS IS THE CONTEXT", this);
+            // console.log("THIS IS THE CURRENT VIDEO INDEX", this.currentVideoIndex);
+            // console.log("THIS IS THE SINGLE VIDEO", this.docsVideos[0]);
+            // console.log("THIS IS SINGLE GIF", this.singleVideo)
        
-            var storage = firebase.storage();
-            let storageRef = storage.ref();
-            let videoRef = storageRef.child('videos/bulbasaur.mp4');
-               function getVideosFromStorage() {
-                     videoRef.getDownloadURL().then(videoUrl => {
-                        this.singleGif = videoUrl;
-                        console.log("THIS IS THE URL", videoUrl)
-                     })
-                     .catch(err => console.error(err));
-                    console.log("THIS AFTER API CALL", this);
-                };
-                const getVideosFromStorageFunc = getVideosFromStorage.bind(this);
-                getVideosFromStorageFunc();
-            this.replaceStringsInUrl();
+            // var storage = firebase.storage();
+            // let storageRef = storage.ref();
+            // let videoRef = storageRef.child('videos/bulbasaur.mp4');
+            //    function getVideosFromStorage() {
+            //          videoRef.getDownloadURL().then(videoUrl => {
+            //             this.singleVideo = videoUrl;
+            //             console.log("THIS IS THE URL", videoUrl)
+            //          })
+            //          .catch(err => console.error(err));
+            //         console.log("THIS AFTER API CALL", this);
+            //     };
+            //     const getVideosFromStorageFunc = getVideosFromStorage.bind(this);
+            //     getVideosFromStorageFunc();
+            // this.replaceStringsInUrl();
         },
         
         computed: {
@@ -114,9 +116,11 @@ import fb from '@/fb'
                 // 'https://pkmneclipse.net/images/letsgo/kanto-normal/Rattata.gif', 
                 // 'https://pkmneclipse.net/images/letsgo/kanto-normal/Raticate.gif'
                 // ],
-                singleGif: "hello",
+                singleVideo: "hello",
                 currentVideoIndex: "",
-                pokemons: []
+                ideosUrls: [],
+                docsVideos: [],
+                urlsCollection: []
              
             }
         },
@@ -143,7 +147,7 @@ import fb from '@/fb'
                 console.log("THIS IS THE CURRENT POKEMON INDEX IN NEXT:", this.currentPokemonIndex)
                 console.log("THIS IS THE CURRENT POKEMON NAME IN NEXT:", pokemonName )
                 this.pokemonName = pokemonName;
-                this.goToNextGifPokemon();
+                this.goToNextVideo();
 
                 if (this.pokemonName === "raticate") {
                     this.nextButton = false;
@@ -158,7 +162,7 @@ import fb from '@/fb'
                     console.log("THIS IS THE CURRENT POKEMON INDEX IN  PREVIOUS:", this.currentPokemonIndex)
                     console.log("THIS IS THE CURRENT POKEMON NAME IN  PREVIOUS:", this.pokemonName);
 
-                    this.goToPreviousGif();
+                    this.goToPreviousVideo();
 
                         if (this.pokemonName === "bulbasaur") {
                             this.previousButton = false;
@@ -166,27 +170,45 @@ import fb from '@/fb'
                     this.nextButton = true;
                 },
 
-                goToNextGifPokemon() {
-                    this. currentVideoIndex++;
-                    let singleGif  = this.gifsArray[this.currentGifIndex];
-                    console.log("THIS IS THE CURRENT GIF INDEX IN NEXT:", this.currentGifIndex)
-                    console.log("THIS IS THE CURRENT POKEMON GIF IN NEXT:", singleGif )
-                    this.singleGif = singleGif;   
+                goToNextVideo() {
+                    this.currentVideoIndex++;
+                    let singleVideo  = this.gifsArray[this.currentVideoIndex];
+                    console.log("THIS IS THE CURRENT GIF INDEX IN NEXT:", this.currentVideoIndex)
+                    console.log("THIS IS THE CURRENT POKEMON GIF IN NEXT:", singleVideo )
+                    this.singleVideo = singleVideo;   
                 },
 
-                goToPreviousGif(){
-                    this.currentGifIndex--; 
-                    let singleGif = this.gifsArray[this.currentGifIndex];
-                    this.singleGif = singleGif; 
-                    console.log("THIS IS THE CURRENT GIF INDEX IN  PREVIOUS:", this.currentGifIndex)
-                    console.log("THIS IS THE CURRENT GIF IN  PREVIOUS:", this.singleGif);
+                goToPreviousVideo(){
+                    this.currentVideoIndex--; 
+                    let singleVideo = this.gifsArray[this.currentVideoIndex];
+                    this.singleVideo = singleVideo; 
+                    console.log("THIS IS THE CURRENT GIF INDEX IN  PREVIOUS:", this.currentVideoIndex)
+                    console.log("THIS IS THE CURRENT GIF IN  PREVIOUS:", this.singleVideo);
                   
                 },
 
-                replaceStringsInUrl() {
-          
-                    console.log("THIS IS BULBASAUR", this.singleGif);
-                }
+                getVideoCollection() {
+                    db.collection('pokemons').get().then((response) => {
+                    // console.log("THIS IS THE response", response);
+                    // console.log("THIS IS THE DOC", response.docs);
+                    
+                    // console.log("THIS IS THE URL",response.docs[0]._document.data.internalValue.root.value.internalValue);
+                    for (var i=0; i < response.docs.length; i++) {
+                        let urls = response.docs[i]._document.data.internalValue.root.value.internalValue;
+                        // console.log("URL IN LOOP",urls);
+                           this.docsVideos.push(urls);
+                    }
+                     this.urlsCollection = this.docsVideos
+                     console.log("URL COLLECTION IN FUNCTION", this.urlsCollection)
+                    });
+
+                    return this.urlsCollection
+               
+                    // console.log("this is my docs videos", this.docsVideos);
+                    // console.log("THIS IS THE CONTEXT IN API CALL", this)
+                },
+
+                
            
 
      
