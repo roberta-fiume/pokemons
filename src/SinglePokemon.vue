@@ -32,16 +32,11 @@ import db from '@/fb'
     export default {
 
         watch: {
-            infoSinglePokemonProp() {
-                console.log("I am changed:", this.infoSinglePokemonProp)
-            },
-
+         
             urlsCollection() {
-                  this.orderUrls(); 
-                  
-                console.log("VIDEO COLLECTION IN WATCH", this.urlsCollection);
-                this.singleVideo = this.urlsCollection[this.currentVideoIndex];
-                console.log("THIS IS THE SINGLE VIDEO", this.singleVideo)
+                let pokemonsUrls = this.orderUrls();  
+                this.singleVideo = pokemonsUrls[this.currentVideoIndex];
+                console.log("THIS IS THE SINGLE VIDEO", this.singleVideo)  
             }
           
           
@@ -61,33 +56,8 @@ import db from '@/fb'
             this.urlsCollection = this.getVideoCollection();
             console.log("VIDEO COLLECTION", this.urlsCollection);
            
-            // this.singleVideo = this.docsVideos[this.currentVideoIndex];
-            //   console.log("THIS IS DOCS VIDEOS", this.docsVideos);
-            // console.log("THIS IS THE CONTEXT", this);
-            // console.log("THIS IS THE CURRENT VIDEO INDEX", this.currentVideoIndex);
-            // console.log("THIS IS THE SINGLE VIDEO", this.docsVideos[0]);
-            // console.log("THIS IS SINGLE GIF", this.singleVideo)
-       
-            // var storage = firebase.storage();
-            // let storageRef = storage.ref();
-            // let videoRef = storageRef.child('videos/bulbasaur.mp4');
-            //    function getVideosFromStorage() {
-            //          videoRef.getDownloadURL().then(videoUrl => {
-            //             this.singleVideo = videoUrl;
-            //             console.log("THIS IS THE URL", videoUrl)
-            //          })
-            //          .catch(err => console.error(err));
-            //         console.log("THIS AFTER API CALL", this);
-            //     };
-            //     const getVideosFromStorageFunc = getVideosFromStorage.bind(this);
-            //     getVideosFromStorageFunc();
-            // this.replaceStringsInUrl();
         },
         
-        computed: {
-        
-        },
-    
        props: ['infoSinglePokemonProp'],
 
        
@@ -97,56 +67,20 @@ import db from '@/fb'
                 pokemonName: "",
                 previousButton: false,
                 nextButton: true,
-                // gifsArray: [
-                // 'https://media.giphy.com/media/I2nZMy0sI0ySA/giphy.gif', 
-                // 'https://media.giphy.com/media/GA3BbCXTEm6hq/giphy.gif', 
-                // 'https://media.giphy.com/media/905ATvUcKqN0I/giphy.gif',
-                // 'https://media.giphy.com/media/yhfTY8JL1wIAE/giphy.gif',
-                // 'https://pkmneclipse.net/images/letsgo/kanto-normal/Charmeleon.gif',
-                // 'https://media.giphy.com/media/48cVVAf9vam9W/giphy.gif', 
-                // 'https://media.giphy.com/media/fjgqYjVkzfQ9a/giphy.gif', 
-                // 'https://media.giphy.com/media/jymDyv7MzGgzC/giphy.gif',
-                // 'https://media.giphy.com/media/tDT5nL8EXbQhW/giphy.gif',
-                // 'https://media.giphy.com/media/ZKaR6dsqUELIs/giphy.gif',
-                // 'https://pkmneclipse.net/images/letsgo/kanto-normal/Metapod.gif',
-                // 'https://media.giphy.com/media/Ktr7TBN3hV39u/giphy.gif',
-                // 'https://media.giphy.com/media/anLxZPExDZZ4I/giphy.gif',
-                // 'https://pkmneclipse.net/images/letsgo/kanto-normal/Kakuna.gif', 
-                // 'https://pkmneclipse.net/images/letsgo/kanto-normal/Beedrill.gif', 
-                // 'https://pkmneclipse.net/images/letsgo/kanto-normal/Pidgey.gif', 
-                // 'https://media.giphy.com/media/hJugcAt6VIzMA/giphy.gif', 
-                // 'https://pkmneclipse.net/images/letsgo/kanto-normal/Pidgeot.gif', 
-                // 'https://pkmneclipse.net/images/letsgo/kanto-normal/Rattata.gif', 
-                // 'https://pkmneclipse.net/images/letsgo/kanto-normal/Raticate.gif'
-                // ],
-                singleVideo: "hello",
+                singleVideo: "",
                 currentVideoIndex: "",
-                ideosUrls: [],
                 docsVideos: [],
                 urlsCollection: [],
                 pokemons: ["bulbasaur", "ivysaur", "venusaur", "charmander", "charmeleon", "charizard", "squirtle", "wartortle", "blastoise",
                 "caterpie", "metapod", "butterfree", "weedle", "kakuna", "beedrill", "pidgey", "pidgeotto", "rattata", "raticate" ] 
-             
             }
         },
 
         methods: {
-
-            //    countPokemonsNames() {
-            //         console.log("countPokemonsNames", this.infoSinglePokemonProp)
-            //         let totalPokemonsNames = 0;
-            //             if (this.infoSinglePokemonProp == undefined) {
-            //                 return totalPokemonsNames;
-            //             }
-            //             totalPokemonsNames = this.infoSinglePokemonProp.length
-            //             console.log("THIS IS THE TOTAL:", totalPokemonsNames)
-            //             return totalPokemonsNames;
-            //     },
          
             goToNextPokemon() {
                 this.currentPokemonIndex++;
                 this.previousButton = true;
-                // let totalPokemonsNames =  this.countPokemonsNames();
                 console.log("THIS IS THE POKEMON NAMEEEEEE BEFORE", this.infoSinglePokemonProp[this.currentPokemonIndex].name)
                 let pokemonName  = this.infoSinglePokemonProp[this.currentPokemonIndex].name;
                 console.log("THIS IS THE CURRENT POKEMON INDEX IN NEXT:", this.currentPokemonIndex)
@@ -175,32 +109,11 @@ import db from '@/fb'
                     this.nextButton = true;
                 },
 
-                goToNextVideo() {
-                    this.currentVideoIndex++;
-                    let singleVideo  = this.gifsArray[this.currentVideoIndex];
-                    console.log("THIS IS THE CURRENT GIF INDEX IN NEXT:", this.currentVideoIndex)
-                    console.log("THIS IS THE CURRENT POKEMON GIF IN NEXT:", singleVideo )
-                    this.singleVideo = singleVideo;   
-                },
-
-                goToPreviousVideo(){
-                    this.currentVideoIndex--; 
-                    let singleVideo = this.gifsArray[this.currentVideoIndex];
-                    this.singleVideo = singleVideo; 
-                    console.log("THIS IS THE CURRENT GIF INDEX IN  PREVIOUS:", this.currentVideoIndex)
-                    console.log("THIS IS THE CURRENT GIF IN  PREVIOUS:", this.singleVideo);
-                  
-                },
-
                 getVideoCollection() {
                     db.collection('pokemons').get().then((response) => {
-                    // console.log("THIS IS THE response", response);
-                    // console.log("THIS IS THE DOC", response.docs);
-                    
-                    // console.log("THIS IS THE URL",response.docs[0]._document.data.internalValue.root.value.internalValue);
                     for (var i=0; i < response.docs.length; i++) {
                         let urls = response.docs[i]._document.data.internalValue.root.value.internalValue;
-                        console.log("URL IN LOOP",urls);
+                        // console.log("URL IN LOOP",urls);
                            this.docsVideos.push(urls);
                     }
                      this.urlsCollection = this.docsVideos
@@ -223,8 +136,66 @@ import db from '@/fb'
                     console.log("CHARMELEON", charmeleon);
                     let charizard = this.urlsCollection[5].replace("caterpie", "charizard");
                     console.log("CHARIZARD", charizard);
-        
-                }
+                    let squirtle = this.urlsCollection[6].replace("charizard", "squirtle");
+                    console.log("SQUITLE", squirtle);
+                    let wartortle = this.urlsCollection[7].replace("charmeleon", "wartortle");
+                    console.log("WARTORTLE", wartortle);
+                    let blastoise = this.urlsCollection[8].replace("ivysaur", "blastoise");
+                    console.log("BLASTOISE", blastoise);
+                    let caterpie = this.urlsCollection[9].replace("kakuna", "caterpie");
+                    console.log("CATERPIE", caterpie);
+                    let metapod = this.urlsCollection[10].replace("metapod", "metapod");
+                    console.log("METAPOD", metapod );
+                    let butterfree = this.urlsCollection[11].replace("pidgeot", "butterfree");
+                    console.log("BUTTERFREE", butterfree);
+                    let weedle = this.urlsCollection[12].replace("pidgeotto", "weedle");
+                    console.log("WEEDLE",weedle);
+                    let kakuna = this.urlsCollection[13].replace("pidgey", "kakuna");
+                    console.log("KAKUNA", kakuna);
+                    let beedrill = this.urlsCollection[14].replace("raticate", "beedrill");
+                    console.log("BEEDRILL", beedrill);
+                    let pidgey = this.urlsCollection[15].replace("rattata","pidgey");
+                    console.log("PIDGEY", pidgey);
+                    let pidgeotto = this.urlsCollection[16].replace("squirtle","pidgeotto");
+                    console.log("PIDGEOTTO", pidgeotto);
+                    let pidgeot = this.urlsCollection[17].replace("venusaur","pidgeot");
+                    console.log("PIDGEOT", pidgeot);
+                    let rattata = this.urlsCollection[18].replace("wartortle","rattata");
+                    console.log("RATTATA", rattata);
+                    let raticate = this.urlsCollection[19].replace("weedle","raticate");
+                    console.log("RATICATE", raticate);
+
+                    let pokemonsUrls = [];
+                    pokemonsUrls.push(bulbasaur, ivysaur, venusaur, charmander, charmeleon, charizard,
+                    squirtle, wartortle, blastoise, caterpie, metapod, butterfree, weedle, kakuna, beedrill, pidgey,
+                    pidgeotto, pidgeot, rattata, raticate);
+
+                    console.log("THIS IS MY ARRAY WITH URLS", pokemonsUrls)
+
+                    return pokemonsUrls;
+                },
+
+                
+                goToNextVideo() {
+                    this.currentVideoIndex++;
+                    let pokemonsUrls = this.orderUrls();  
+                    let singleVideo = pokemonsUrls[this.currentVideoIndex];
+                    this.singleVideo = singleVideo; 
+                    console.log("THIS IS THE CURRENT VIDEO INDEX IN NEXT:", this.currentVideoIndex)
+                    console.log("THIS IS THE CURRENT POKEMON VIDEO IN NEXT:", this.singleVideovideo)
+                
+                },
+
+                goToPreviousVideo(){
+                    this.currentVideoIndex--; 
+                    let pokemonsUrls = this.orderUrls();  
+                    let singleVideo = pokemonsUrls[this.currentVideoIndex];
+                    this.singleVideo = singleVideo; 
+                    console.log("THIS IS THE CURRENT GIF INDEX IN  PREVIOUS:", this.currentVideoIndex)
+                    console.log("THIS IS THE CURRENT GIF IN  PREVIOUS:", this.singleVideo);
+                  
+                },
+
 
                
 
