@@ -1,5 +1,6 @@
 <template>
-    <div>
+    <div > 
+       
         <v-card class="ma-5" color="purple lighten-3" dark max-width="400" >
             <v-card-title>
             <v-icon left>create</v-icon>
@@ -37,7 +38,7 @@
                     </v-layout>
             </v-list-tile>
             </v-card-actions>
-        </v-card>    
+        </v-card>   
     </div>
 </template>
 
@@ -100,6 +101,7 @@
       align-items: center;
       justify-content: center; 
   }
+
 </style>
 
 

@@ -19,14 +19,6 @@ export default {
 
         }
     },
-
-      watch: {
-        imagesPokemonsProp() {
-            console.log("I am changeddddd:",this.infoPokemonsProp);
-      
-        }
-     
-    },
 }
 </script>
 

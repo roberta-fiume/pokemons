@@ -7,17 +7,17 @@
             <SinglePokemon :infoSinglePokemonProp="infoPokemons" />
           </div>
 
-          <div  class="purple lighten-2" v-if="showDivPokemon">
+          <div class="purple lighten-2" id="scroll-box" v-if="showDivPokemon">
               <ListComponent :infoPokemonsProp="infoPokemons"/>
           </div>
        </div>
 
       <v-layout v-if="layout">
-        <v-flex xs12 sm6 offset-sm3>
+        <v-flex xs12 sm12 lg6 offset-sm3>
           <v-card>
             <v-img :src="images.mainImg" class="img"></v-img>
 
-            <v-card-title primary-title id="title">
+            <v-card-title   primary-title id="title">
               <div>
                 <h3 class="headline mb-0">Welcome to Pokemons' App</h3>
               </div>
@@ -54,7 +54,7 @@
         showDivPokemon: false,
         showDivSinglePokemon: false,
         images: {
-          mainImg: require('./assets/img/pokemons.jpg'),
+        mainImg: require('./assets/img/pokemons.jpg'),
         },
         layout: true    
       }
@@ -141,6 +141,9 @@
   justify-content: center;
 }
 
-
+#scroll-box {
+  height: 630px;
+  overflow-y: scroll;
+}
   
 </style>

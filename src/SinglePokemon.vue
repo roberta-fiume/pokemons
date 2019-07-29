@@ -4,12 +4,12 @@
             <v-card color="purple lighten-2" class="white--text">
               <v-card-title primary-title>
                 <div>
-                  <div class="body-2 mb-3" id="pokemonTitle">
+                  <div class="body-2 mb-2" id="pokemonTitle">
                       <span class="title font-weight-light white--text text--lighten-2"> Name:</span>
                    <span class="title font-weight-bold white--text text--lighten-2 ml-1">{{pokemonName}}</span>
                   </div>
                   <div>
-                       <video width="350" controls :src="singleVideo"></video>
+                       <video width="550px" height="500px" controls :src="singleVideo"></video>
                   </div>
                 </div>
               </v-card-title>
@@ -37,25 +37,16 @@ import db from '@/fb'
                 let pokemonsUrls = this.orderUrls();  
                 this.singleVideo = pokemonsUrls[this.currentVideoIndex];
                 console.log("THIS IS THE SINGLE VIDEO", this.singleVideo)  
-            }
-          
-          
+            } 
         },
         
      
         mounted() {
-            console.log("this is singleVideo in MOUNTED", this.singleVideo)
             this.currentPokemonIndex = 0;
             this.pokemonName = this.infoSinglePokemonProp[this.currentPokemonIndex].name;
-            console.log("THIS IS THE INDEX IN MOUNTED:", this.currentPokemonIndex);
-            console.log("THIS IS THE POKEMON NAME:", this.pokemonName);
-            console.log("THIS IS THE POKEMON NAME INDEXXX:", this.pokemonName);
             this.infoSinglePokemonProp;
-
             this.currentVideoIndex = 0;
-            this.urlsCollection = this.getVideoCollection();
-            console.log("VIDEO COLLECTION", this.urlsCollection);
-           
+            this.urlsCollection = this.getVideoCollection(); 
         },
         
        props: ['infoSinglePokemonProp'],
@@ -81,16 +72,12 @@ import db from '@/fb'
             goToNextPokemon() {
                 this.currentPokemonIndex++;
                 this.previousButton = true;
-                console.log("THIS IS THE POKEMON NAMEEEEEE BEFORE", this.infoSinglePokemonProp[this.currentPokemonIndex].name)
                 let pokemonName  = this.infoSinglePokemonProp[this.currentPokemonIndex].name;
-                console.log("THIS IS THE CURRENT POKEMON INDEX IN NEXT:", this.currentPokemonIndex)
-                console.log("THIS IS THE CURRENT POKEMON NAME IN NEXT:", pokemonName )
                 this.pokemonName = pokemonName;
                 this.goToNextVideo();
-
-                if (this.pokemonName === "raticate") {
-                    this.nextButton = false;
-                }
+                    if (this.pokemonName === "raticate") {
+                        this.nextButton = false;
+                    }
                 return this.pokemonName
             },
 
@@ -98,11 +85,7 @@ import db from '@/fb'
                     this.currentPokemonIndex--; 
                     let pokemonName = this.infoSinglePokemonProp[this.currentPokemonIndex].name;
                     this.pokemonName = pokemonName;
-                    console.log("THIS IS THE CURRENT POKEMON INDEX IN  PREVIOUS:", this.currentPokemonIndex)
-                    console.log("THIS IS THE CURRENT POKEMON NAME IN  PREVIOUS:", this.pokemonName);
-
                     this.goToPreviousVideo();
-
                         if (this.pokemonName === "bulbasaur") {
                             this.previousButton = false;
                         }
@@ -170,8 +153,6 @@ import db from '@/fb'
                     squirtle, wartortle, blastoise, caterpie, metapod, butterfree, weedle, kakuna, beedrill, pidgey,
                     pidgeotto, pidgeot, rattata, raticate);
 
-                    console.log("THIS IS MY ARRAY WITH URLS", pokemonsUrls)
-
                     return pokemonsUrls;
                 },
 
@@ -181,9 +162,6 @@ import db from '@/fb'
                     let pokemonsUrls = this.orderUrls();  
                     let singleVideo = pokemonsUrls[this.currentVideoIndex];
                     this.singleVideo = singleVideo; 
-                    console.log("THIS IS THE CURRENT VIDEO INDEX IN NEXT:", this.currentVideoIndex)
-                    console.log("THIS IS THE CURRENT POKEMON VIDEO IN NEXT:", this.singleVideovideo)
-                
                 },
 
                 goToPreviousVideo(){
@@ -191,18 +169,7 @@ import db from '@/fb'
                     let pokemonsUrls = this.orderUrls();  
                     let singleVideo = pokemonsUrls[this.currentVideoIndex];
                     this.singleVideo = singleVideo; 
-                    console.log("THIS IS THE CURRENT GIF INDEX IN  PREVIOUS:", this.currentVideoIndex)
-                    console.log("THIS IS THE CURRENT GIF IN  PREVIOUS:", this.singleVideo);
-                  
-                },
-
-
-               
-
-                
-           
-
-     
+                }
         }
   
     }
