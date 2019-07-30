@@ -1,5 +1,8 @@
 <template>
     <div>
+        <v-img>
+            
+        </v-img>
         <v-flex xs12>
             <v-card color="purple lighten-2" class="white--text">
               <v-card-title primary-title>
