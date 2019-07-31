@@ -2,10 +2,10 @@
     <div>
         <v-flex xs12>
             <v-card color="grey darken-1" class="white--text">
-               
-                    <v-card-title class="justify-center">
+            
+                    <v-card-title class="justify-center" >
                         <div>
-                            <v-card-text width="200px">
+                            <v-card-text class="v-card_text">
                             <h2 class="display-2 font-weight-medium white--text mt-4"><v-icon left large>remove_red_eye</v-icon>WATCH THEM ALL</h2>
                             </v-card-text>
                             <div class="body-2 ma-4" id="pokemonTitle">
@@ -13,7 +13,7 @@
                             <span class="display-1 font-weight-bold white--text text--lighten-2 ml-2">{{pokemonName}}</span>
                             </div>
                             <v-flex>
-                                <video flex width="700px" height="500px" controls :src="singleVideo"></video>
+                                <video flex  class="shadow" width="700px" height="500px" controls :src="singleVideo"></video>
                             </v-flex>
 
                             <v-card-actions>
@@ -25,8 +25,6 @@
                    
                     </v-card-title>
                 
-                
-             
             </v-card>
             
         </v-flex>
@@ -192,26 +190,44 @@ import db from '@/fb'
 
 #div-pokemons {
     display: none;
-};
+}
 
 #pokemonTitle {
     display: flex !important;
     flex-direction: row !important;
     align-items: center;
-};
+}
 
 .v-card_text {
-    width: 250px;
-    border: 2px solid teal;
     display: flex;
     flex-direction: column;
-    align-items: center
+    width: 700px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
+@keyframes shadow-pulse
+{
+     0% {
+          box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.2);
+     }
+     100% {
+          box-shadow: 0 0 0 50px rgba(0, 0, 0, 0);
+     }
 }
 
 .v-btn__content:hover {
     color: #FFC400;
+    animation: shadow-pulse 1s 1;   
 }
+
+.shadow:hover {
+  box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.5);
+}
+
+
+
 
 
 </style>

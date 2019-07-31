@@ -25,16 +25,16 @@
             <h1 class="display-1 font-weight-medium white--text" id="h1"  @click="showPokemons" > get them all</h1>
             <img :src="images.pokemonBall" id="pokemon-ball" alt="">
           </div>
-      </div>
+        </div>
    
       
     
        <div class="wrap-div ma-5">
-          <div v-if="showDivSinglePokemon">
+          <div v-if="showDivSinglePokemon" id="singlePokemonBox">
             <SinglePokemon :infoSinglePokemonProp="infoPokemons" />
           </div>
 
-          <div class="purple lighten-2" id="scroll-box" v-if="showDivPokemon">
+          <div class="grey darken-1" id="scroll-box" v-if="showDivPokemon">
               <ListComponent :infoPokemonsProp="infoPokemons"/>
           </div>
        </div>
@@ -174,9 +174,13 @@ body {
   color: yellow !important;
 }
 
+#singlePokemonBox {
+  margin-bottom: 50px;
+}
+
   /* .wrap-div {
   display: none;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-evenly; 
 }   */
 
