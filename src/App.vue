@@ -1,34 +1,31 @@
 <template>
-  <v-app class="black"  id="background">
-      <div id="wrapper-title">
+  <v-app class="black" id="background">
+      <div id="wrapper-title" v-if="layout" >
         <svg viewBox="0 0 600 300">
-
-          <!-- Symbol -->
+         
           <symbol id="s-text">
             <text text-anchor="middle"
                   x="50%" y="50%" dy=".35em">
               Pokemon
             </text>
+
+          
           </symbol>  
-
-          <!-- Duplicate symbols -->
-          <use xlink:href="#s-text" class="text"
-              ></use>
-          <use xlink:href="#s-text" class="text"
-              ></use>
-          <use xlink:href="#s-text" class="text"
-              ></use>
-          <use xlink:href="#s-text" class="text"
-              ></use>
-          <use xlink:href="#s-text" class="text"
-              ></use>
-
+   
+          <use xlink:href="#s-text" class="text"></use>
+          <use xlink:href="#s-text" class="text"></use>
+          <use xlink:href="#s-text" class="text"></use>
+          <use xlink:href="#s-text" class="text"></use>
+          <use xlink:href="#s-text" class="text"></use>
         </svg>
 
 
-          <img :src="images.mainImg" class="img" id="img"/>
-          <!-- <h1 class="display-4 font-weight-medium white--text" id="h1"> Get them all</h1> -->
-        </div>
+          <img :src="images.mainImg" id="image"/>
+          <div id="flex-div">
+            <h1 class="display-1 font-weight-medium white--text" id="h1"  @click="showPokemons" > get them all</h1>
+            <img :src="images.pokemonBall" id="pokemon-ball" alt="">
+          </div>
+      </div>
    
       
     
@@ -43,7 +40,7 @@
        </div>
 
 
-      <!-- <v-layout v-if="layout">
+       <!-- <v-layout v-if="layout" >
         <v-flex xs12 sm12 lg6 offset-sm3>
           <v-card>
             <v-img :src="images.mainImg" class="img"></v-img>
@@ -59,7 +56,7 @@
             </v-card-actions>
           </v-card>
         </v-flex>
-      </v-layout> -->
+      </v-layout>  -->
 
   </v-app>
 </template>
@@ -87,6 +84,7 @@
         showDivSinglePokemon: false,
         images: {
         mainImg: require('./assets/img/pokemons1.jpg'),
+        pokemonBall: require('./assets/img/poke-ball.png'),
         },
         layout: true    
       }
@@ -104,19 +102,6 @@
         return this.infoPokemons
       },
 
-      // getPokemonsImages() {
-      //   console.log("Hello, I workkkkkkk!");
-      //   const axios = require('axios');
-      //   let arrayPokemons =  this.listPokemonsImages();
-      //   console.log('THESE IS THE ARRAY IMAGEEEEESSSSS', this.imagesPokemons)
-      //   axios.get('https://pokeapi.co/api/v2/pokemon-form/1/')
-      //   .then(response => (this.imagesPokemons = arrayPokemons))
-      //   .catch(function (error) {
-      //   console.log("THIS IS THE ERROR:",error);
-      //   })
-      //   return this.imagesPokemons
-      // },
-
       showPokemons() {
         this.layout = !this.layout
         this.toggleClass();
@@ -130,17 +115,6 @@
       toggleClassSinglePokemon() {
         this.showDivSinglePokemon = !this.showDivSinglePokemon
       },
-
-      // countPokemonsNames() {
-      //   console.log("countPokemonsNames", this.infoPokemons )
-      //     let totalPokemonsNames = 0;
-      //     if (this.infoPokemons == undefined) {
-      //       return totalPokemonsNames;
-      //     }
-      //       totalPokemonsNames = this.infoPokemons.length
-      //       console.log("THIS IS THE TOTAL:", totalPokemonsNames)
-      //     return totalPokemonsNames;
-      // },
 
     },
     
@@ -157,16 +131,25 @@
 
 html {
   height: 100%;
-};
+}
 
 body {
   height: 100%;
 }
 
-#img {
+#image {
   opacity: 0.2;
   height: 100%;
-} 
+}
+
+#pokemon-ball {
+  display: flex;
+  position: absolute; 
+  height: 40px;
+  width: 40px;
+  left: 58%;
+  top: 72.3%;
+}
 
 #wrapper-title{
   display: flex;
@@ -177,21 +160,27 @@ body {
   transform: translate(-50%, -50%);
 }
 
-h1 {
-   position: absolute;  
-    left: 50%;                        /* horizontal alignment */
-    top: 50%;                       /* vertical alignment */
-    transform: translate(-50%, -50%);
+
+ h1 {
+  display: flex;
+  position: absolute;  
+  left: 50%;                       
+  top: 75%;                      
+  transform: translate(-50%, -50%);
+  text-transform: uppercase;
 }
 
+#h1:hover {
+  color: yellow !important;
+}
 
-.wrap-div {
+  /* .wrap-div {
   display: none;
   flex-direction: row;
-  justify-content: space-evenly;
-}
+  justify-content: space-evenly; 
+}   */
 
-#title {
+ #title {
   display: flex;
   justify-content: column;
   align-items: center;
@@ -203,16 +192,15 @@ h1 {
   justify-content: column;
   align-items: center;
   justify-content: center;
-}
+} 
 
 #scroll-box {
   height: 630px;
   overflow-y: scroll;
-}
+} 
   
 
-
-.text {
+ .text {
   fill: none;
   stroke-width: 6;
   stroke-linejoin: round;
@@ -231,7 +219,7 @@ h1 {
   stroke: #F5A503;
   -webkit-animation-delay: -2.4s;
   animation-delay: -2.4s;
-}
+} 
 
 .text:nth-child(5n + 3) {
   stroke: #E9F1DF;
@@ -249,7 +237,7 @@ h1 {
   stroke: #3AA1BF;
   -webkit-animation-delay: -6s;
   animation-delay: -6s;
-}
+} 
 
 @-webkit-keyframes stroke {
   100% {
@@ -263,22 +251,20 @@ h1 {
   }
 }
 
-/* Other styles */
 html, body {
   height: 100%;
 }
 
 body {
-  background: #111;
+ background: #111;
   background-size: .2em 100%;
   font: 7.5em/1 Open Sans, Impact;
-  text-transform: uppercase;
   margin: 0;
-}
+} 
 
 svg {
   position: absolute;
   width: 100%;
   height: 100%;
-}  
+}     
 </style>
