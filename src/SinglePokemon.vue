@@ -1,23 +1,25 @@
 <template>
     <div>
         <v-flex xs12>
-            <v-card color="purple lighten-2" class="white--text">
+            <v-card color="grey darken-1" class="white--text">
                
                     <v-card-title class="justify-center">
                         <div>
-                            <h2 class="display-1 font-weight-medium white--text mt-4"><v-icon class="mr-2">remove_red_eye</v-icon>WATCH THEM ALL</h2>
+                            <v-card-text width="200px">
+                            <h2 class="display-2 font-weight-medium white--text mt-4"><v-icon left large>remove_red_eye</v-icon>WATCH THEM ALL</h2>
+                            </v-card-text>
                             <div class="body-2 ma-4" id="pokemonTitle">
-                                <span class="title font-weight-light white--text text--lighten-2"> Name:</span>
-                            <span class="title font-weight-bold white--text text--lighten-2 ml-1">{{pokemonName}}</span>
+                                <span class="display-1 font-weight-light white--text text--lighten-2"> Name:</span>
+                            <span class="display-1 font-weight-bold white--text text--lighten-2 ml-2">{{pokemonName}}</span>
                             </div>
                             <v-flex>
                                 <video flex width="700px" height="500px" controls :src="singleVideo"></video>
                             </v-flex>
 
-                                     <v-card-actions>
-                        <v-btn flat dark  @click="goToPreviousPokemon" v-if="previousButton" class="white--text text--lighten-2">PREVIOUS</v-btn>
-                        <v-btn flat dark  @click="goToNextPokemon" v-if="nextButton"  class="white--text text--lighten-2">NEXT</v-btn>
-                    </v-card-actions>
+                            <v-card-actions>
+                                <v-btn dark large @click="goToPreviousPokemon" v-if="previousButton" class="white--text text--lighten-2">PREVIOUS</v-btn>
+                                <v-btn dark large  @click="goToNextPokemon" v-if="nextButton"  class="white--text text--lighten-2">NEXT</v-btn>
+                            </v-card-actions>
                         </div>
 
                    
@@ -186,6 +188,8 @@ import db from '@/fb'
 
 <style>
 
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:800);
+
 #div-pokemons {
     display: none;
 };
@@ -195,6 +199,19 @@ import db from '@/fb'
     flex-direction: row !important;
     align-items: center;
 };
+
+.v-card_text {
+    width: 250px;
+    border: 2px solid teal;
+    display: flex;
+    flex-direction: column;
+    align-items: center
+
+}
+
+.v-btn__content:hover {
+    color: #FFC400;
+}
 
 
 </style>
