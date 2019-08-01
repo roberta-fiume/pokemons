@@ -201,6 +201,9 @@ body {
 #scroll-box {
   height: 630px;
   overflow-y: scroll;
+  display: flex;
+  justify-content: center;
+  align-content: center;
 } 
   
 
