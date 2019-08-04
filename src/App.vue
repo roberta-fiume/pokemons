@@ -34,7 +34,7 @@
             <SinglePokemon :infoSinglePokemonProp="infoPokemons" />
           </div>
 
-          <div class="grey darken-1" id="scroll-box" v-if="showDivPokemon">
+          <div   v-if="showDivPokemon">
               <ListComponent :infoPokemonsProp="infoPokemons"/>
           </div>
        </div>
@@ -198,13 +198,16 @@ body {
   justify-content: center;
 } 
 
+
 #scroll-box {
-  height: 630px;
-  overflow-y: scroll;
-  display: flex;
+  /* height: 630px; */
+  /* overflow-y: scroll;  */
+  /* display: flex;
+  flex-direction: row !important;
   justify-content: center;
-  align-content: center;
+  align-content: center; */
 } 
+
   
 
  .text {
