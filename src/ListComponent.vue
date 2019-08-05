@@ -1,54 +1,47 @@
 <template>
     <div id="app">
- 
-      <vue-glide class="demo" :bullet="true">
-      <vue-glide-slide
-        v-for="i in 10"
-        :key="i">
-        Slide {{ i }}
-      </vue-glide-slide>
-      <template slot="control">
-        <button data-glide-dir="<" class="controls">prev</button>
-        <button data-glide-dir=">" class="controls">next</button>
-      </template> 
-
-      <div data-glide-el="controls[nav]">
-          <button data-glide-dir="=0" ></button>
-          <button data-glide-dir="=1"></button>
-          <button data-glide-dir="=2"></button>
-          <button data-glide-dir="=3"></button>
-          <button data-glide-dir="=4"></button>
-          <button data-glide-dir="=5"></button>
-          <button data-glide-dir="=6"></button>
-          <button data-glide-dir="=7"></button>
-          <button data-glide-dir="=8"></button>
-          <button data-glide-dir="=9"></button>
-          </div>
-    </vue-glide>
-        <!-- <pokemon-component v-for="pokemon in infoPokemonsProp" :key="pokemon.name" :pokemonName="pokemon.name" :indexProp="pokemon"> </pokemon-component> -->
+     
+  
+      
+         <vue-glide class="demo" :bullet="true">
+                <vue-glide-slide
+                   v-for="pokemon in infoPokemonsProp">
+                      <pokemon-component  :pokemonName="pokemon.name" :indexProp="pokemon"></pokemon-component> 
+                </vue-glide-slide>
+                <template slot="control">
+                    <button data-glide-dir="<" class="controls">prev</button>
+                    <button data-glide-dir=">" class="controls">next</button>
+                </template> 
+                <div data-glide-el="controls[nav]">
+                    <button data-glide-dir="=0" ></button>
+                    <button data-glide-dir="=1"></button>
+                    <button data-glide-dir="=2"></button>
+                    <button data-glide-dir="=3"></button>
+                    <button data-glide-dir="=4"></button>
+                    <button data-glide-dir="=5"></button>
+                    <button data-glide-dir="=6"></button>
+                    <button data-glide-dir="=7"></button>
+                    <button data-glide-dir="=8"></button>
+                    <button data-glide-dir="=9"></button>
+                    </div>
+        </vue-glide> 
     </div>
 </template> 
 
 <script> 
-// var sass = require('node-sass');
 
-// sass.render({
-//   file: scss_filename,
- 
-// }, function(err, result) { /*...*/ });
 
 import PokemonComponent from "./PokemonComponent.vue"
 import VueGlide from './components/Glide'
 import VueGlideSlide from './components/GlideSlide'
 
 
-
 export default {
     props: ['infoPokemonsProp'],  
     components: {
        PokemonComponent,
-    [VueGlide.name]: VueGlide,
-    [VueGlideSlide.name]: VueGlideSlide
+        [VueGlide.name]: VueGlide,
+        [VueGlideSlide.name]: VueGlideSlide
     },
 
     data() {
@@ -59,26 +52,24 @@ export default {
 }
 </script>
 <style lang="scss">
-    #scroll {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        overflow-x: scroll;
-    }
-#app{
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+
+
+    #app {
+        
+        font-family: 'Avenir', Helvetica, Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-align: center;
+        color: #2c3e50;
+        margin-top: 60px;
 
 .demo {
     .glide {
       &__slide {
         display: flex;
         border: 2px solid #ccc;
-        height: 200px;
+        width: 550px;
+        height: 550px;
         align-items: center;
         justify-content: center;
         color: #aaa;
@@ -96,44 +87,43 @@ export default {
         }
       }
     }
-
-   .controls {
-    font-size: 18px;
-    position: absolute;
-    border: 0;
-    outline: 0;
-    padding: 10px;
-    border-radius: 3px;
-    background-color: blue;
-    opacity: 0.5;
-    color: white;
-    cursor: pointer;
-    width: 70px;
-    height: 70px;
 }
 
-button[data-glide-dir="<"] {
-    left: 5px;
-}
+    .controls {
+        font-size: 18px;
+        position: absolute;
+        border: 0;
+        outline: 0;
+        padding: 10px;
+        border-radius: 3px;
+        background-color: blue;
+        opacity: 0.5;
+        color: white;
+        cursor: pointer;
+        width: 70px;
+        height: 70px;
+    }
 
-button[data-glide-dir=">"] {
-    right: 5px;
-}
+    button[data-glide-dir="<"] {
+        left: 5px;
+    }
 
-.glide__bullet {
+    button[data-glide-dir=">"] {
+        right: 5px;
+    }
+
+    .glide__bullet {
         background-color: yellow;
-    border-style: none;
-    color: inherit;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin: 10px;
+        border-style: none;
+        color: inherit;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin: 10px;
+    }
+
+
 }
-
-
-  }
-}
-
 
 </style>
 

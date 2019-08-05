@@ -34,29 +34,11 @@
             <SinglePokemon :infoSinglePokemonProp="infoPokemons" />
           </div>
 
-          <div   v-if="showDivPokemon">
+          <div id="scoll-box" v-if="showDivPokemon">
               <ListComponent :infoPokemonsProp="infoPokemons"/>
           </div>
        </div>
 
-
-       <!-- <v-layout v-if="layout" >
-        <v-flex xs12 sm12 lg6 offset-sm3>
-          <v-card>
-            <v-img :src="images.mainImg" class="img"></v-img>
-
-            <v-card-title   primary-title id="title">
-              <div>
-                <h3 class="headline mb-0">Welcome to Pokemons' App</h3>
-              </div>
-            </v-card-title>
-
-            <v-card-actions id="wrap-button"> 
-              <v-btn block flat class="purple accent-1" @click="showPokemons()" >Get Pokemons</v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-flex>
-      </v-layout>  -->
 
   </v-app>
 </template>
@@ -200,12 +182,8 @@ body {
 
 
 #scroll-box {
-  /* height: 630px; */
-  /* overflow-y: scroll;  */
-  /* display: flex;
-  flex-direction: row !important;
-  justify-content: center;
-  align-content: center; */
+
+
 } 
 
   

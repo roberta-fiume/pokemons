@@ -1,15 +1,14 @@
 <template>
     <div> 
+
         <v-card class="ma-5 card" color="grey darken-3" dark max-width="400" >
             <v-card-title>
                 <v-icon left>create</v-icon>
                 <span class="headline font-weight-light">Name: </span><h3 class="display-1 ml-2">{{pokemonName}}</h3>
             </v-card-title>
-
             <v-card class="purple lighten-5"  width="350px">
                 <v-layout width="300px" align-center justify-center><img :src="linksForImages" width="200px" height="200px" /></v-layout >
             </v-card>
-
             <v-card-actions>
                 <v-list-tile class="grow">
                         <v-layout align-center justify-start>
@@ -32,12 +31,40 @@
                             <v-icon>share</v-icon>
                             </v-btn>
                             <span class="body-1 ml-1">SHARE</span>
-                
-                        
                         </v-layout>
                 </v-list-tile>
             </v-card-actions>
-        </v-card>   
+        </v-card>  
+        
+<!-- 
+                 <vue-glide class="demo" :bullet="true">
+                <vue-glide-slide v-for="i in 10" :key="i">
+                    Slide {{ i }}
+                </vue-glide-slide>
+
+                <template slot="control">
+                    <button data-glide-dir="<" class="controls">prev</button>
+                    <button data-glide-dir=">" class="controls">next</button>
+                </template> 
+
+                <div data-glide-el="controls[nav]">
+                    <button data-glide-dir="=0" ></button>
+                    <button data-glide-dir="=1"></button>
+                    <button data-glide-dir="=2"></button>
+                    <button data-glide-dir="=3"></button>
+                    <button data-glide-dir="=4"></button>
+                    <button data-glide-dir="=5"></button>
+                    <button data-glide-dir="=6"></button>
+                    <button data-glide-dir="=7"></button>
+                    <button data-glide-dir="=8"></button>
+                    <button data-glide-dir="=9"></button>
+                    </div>
+        </vue-glide> 
+        
+        -->
+       
+                
+       
 
 
 
@@ -46,9 +73,11 @@
 
 <script>
 
-    import carousel from '@/carousel.js'
     export default {
 
+        components: {
+           
+        },
 
         props: {
             pokemonName: String,
@@ -109,15 +138,50 @@
  
 </script>
 
-<style>
+<style lang="scss">
+
     #align-center {
       display: flex;
       align-items: center;
       justify-content: center; 
     }
 
-    
- 
+        #app{
+            font-family: 'Avenir', Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-align: center;
+            color: #2c3e50;
+            margin-top: 60px;
+
+    .demo {
+        .glide {
+          &__slide {
+            display: flex;
+            border: 2px solid #ccc;
+            width: 550px;
+            height: 550px;
+            align-items: center;
+            justify-content: center;
+            color: #aaa;
+            font-size: 36px;
+            font-weight: 600;
+            border-radius: 5px;
+            transition: all .3s;
+            opacity: .3;
+            &--active {
+              border: none;
+              color: #fff;
+               opacity: 1;
+              background: linear-gradient(-45deg,#ed145b,#7b31f4);
+              background-color: limegreen;
+            }
+          }
+        }
+    }
+    }
+
+
 
 </style>
 
