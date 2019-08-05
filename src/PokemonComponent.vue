@@ -41,15 +41,6 @@
 
 
 
-        <!-- <div class="container">
-        <div class="owl-carousel">
-            <div><img src="//placehold.it/400x300/936/fff/?text=1" alt=""></div>
-            <div><img src="//placehold.it/400x300/693/fff/?text=2" alt=""></div>
-            <div><img src="//placehold.it/400x300/369/fff/?text=3" alt=""></div>
-            <div><img src="//placehold.it/400x300/f63/fff/?text=4" alt=""></div>
-        </div>
-        </div> -->
-
     </div>
 </template>
 
@@ -111,25 +102,7 @@
                 })
             },
 
-            // handleScroll(event) {
-            //     this.hello();
-            // },
 
-        //  hello()  {
-        //     document.getElementsByClassName('.owl-carousel').owlCarousel({
-        //     autoplay: true,
-        //     center: true,
-        //     loop: true,
-        //     nav: true,
-        //     navText: ["<span class='icon icon-arrow-left7'></span>","<span class='icon icon-arrow-right7'></span>"],
-        //     items: 1,
-        //     responsive : {
-        //     768 : {
-        //         items : 3,
-        //     }
-        //     }
-        //     })
-        //  }
             
         }     
     }
@@ -143,69 +116,7 @@
       justify-content: center; 
     }
 
-    /* .icon {
-        background: rgba(255, 255, 255, .6);
-        color: rgba(0, 0, 0, .3);
-        font-family: 'FontAwesome';
-        font-size: 40px;
-        line-height: 60px;
-        margin-top: -30px;
-        position: absolute; top: 50%;
-        text-align: center;
-        width: 60px; height: 60px;
-    }
-    .owl-next, 
-    .owl-prev {
-        height: 100%;
-        position: absolute;
-        top: 0;
-        width: 33.33333333%;
-    }
-    .owl-next {
-        right: 0;
-    }
-    .owl-prev {
-        left: 0;
-    }
-    .owl-next:hover .icon, 
-    .owl-prev:hover .icon {
-        background: rgba(48, 117, 70, .8);
-        color: rgba(255, 255, 255, .9);
-    }
-    .icon-arrow-left7 { left: 0; }
-    .icon-arrow-left7:before { content: "\f053"; }
-    .icon-arrow-right7 { right: 0; }
-    .icon-arrow-right7:before { content: "\f054"; }
-
-@media (min-width: 768px) {
-  .container { 
-  
-     margin: 0 auto;
-    overflow: hidden;
-    width: 700px;
-  }
-  .owl-carousel {
-    margin: 0 -60px;
-    position: relative;
-    width: 820px;
-  }
-  .owl-item > div {
-    margin: 45px 60px;
-    transition: margin 400ms ease-out;
-  }
-  .owl-item.center > div {
-    margin: 0;
-  }
-  .owl-next {
-    right: 60px;
-  }
-  .owl-prev {
-    left: 60px;
-  }
-  .icon-arrow-left7 { left: auto; right: 0; }
-  .icon-arrow-right7{ left: 0; right: autp; }
-}  */
-
+    
  
 
 </style>

@@ -7,23 +7,23 @@
         :key="i">
         Slide {{ i }}
       </vue-glide-slide>
-
-         <template slot="control">
-        <button data-glide-dir="<" class="control"></button>
-        <button data-glide-dir=">" class="control"></button>
+      <template slot="control">
+        <button data-glide-dir="<" class="controls">prev</button>
+        <button data-glide-dir=">" class="controls">next</button>
       </template> 
 
-      <div data-glide-el="controls[nav]" class="glide__bullets">
-          <button data-glide-dir="=0" class="glide__bullet"></button>
-          <button data-glide-dir="=1" class="glide__bullet"></button>
-          <button data-glide-dir="=2" class="glide__bullet"></button>
-          <button data-glide-dir="=3" class="glide__bullet"></button>
-          <button data-glide-dir="=4" class="glide__bullet"></button>
-          <button data-glide-dir="=5" class="glide__bullet"></button>
-          <button data-glide-dir="=6" class="glide__bullet"></button>
-          <button data-glide-dir="=7" class="glide__bullet"></button>
-          <button data-glide-dir="=8" class="glide__bullet"></button>
-          <button data-glide-dir="=9" class="glide__bullet"></button></div>
+      <div data-glide-el="controls[nav]">
+          <button data-glide-dir="=0" ></button>
+          <button data-glide-dir="=1"></button>
+          <button data-glide-dir="=2"></button>
+          <button data-glide-dir="=3"></button>
+          <button data-glide-dir="=4"></button>
+          <button data-glide-dir="=5"></button>
+          <button data-glide-dir="=6"></button>
+          <button data-glide-dir="=7"></button>
+          <button data-glide-dir="=8"></button>
+          <button data-glide-dir="=9"></button>
+          </div>
     </vue-glide>
         <!-- <pokemon-component v-for="pokemon in infoPokemonsProp" :key="pokemon.name" :pokemonName="pokemon.name" :indexProp="pokemon"> </pokemon-component> -->
     </div>
@@ -40,6 +40,7 @@
 import PokemonComponent from "./PokemonComponent.vue"
 import VueGlide from './components/Glide'
 import VueGlideSlide from './components/GlideSlide'
+
 
 
 export default {
@@ -96,15 +97,16 @@ export default {
       }
     }
 
-   .control {
+   .controls {
+    font-size: 18px;
     position: absolute;
     border: 0;
     outline: 0;
     padding: 10px;
     border-radius: 3px;
     background-color: blue;
-    opacity: .3;
-    color: #000;
+    opacity: 0.5;
+    color: white;
     cursor: pointer;
     width: 70px;
     height: 70px;
