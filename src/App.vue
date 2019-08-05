@@ -9,7 +9,6 @@
               Pokemon
             </text>
 
-          
           </symbol>  
    
           <use xlink:href="#s-text" class="text"></use>
@@ -22,7 +21,7 @@
 
           <img :src="images.mainImg" id="image"/>
           <div id="flex-div">
-            <h1 class="display-1 font-weight-medium white--text" id="h1"  @click="showPokemons" > get them all</h1>
+            <h1 class="display-1 font-weight-medium" id="h1" @click="showPokemons" > get them all</h1>
             <img :src="images.pokemonBall" id="pokemon-ball" alt="">
           </div>
         </div>
@@ -30,11 +29,11 @@
       
     
        <div class="wrap-div ma-5">
-          <div v-if="showDivSinglePokemon" id="singlePokemonBox">
+          <div v-if="showDivSinglePokemon" id="singlePokemonBox" class="grey darken-4">
             <SinglePokemon :infoSinglePokemonProp="infoPokemons" />
           </div>
 
-          <div id="scoll-box" v-if="showDivPokemon">
+          <div class="grey darken-3" id="scoll-box" v-if="showDivPokemon">
               <ListComponent :infoPokemonsProp="infoPokemons"/>
           </div>
        </div>
@@ -144,6 +143,7 @@ body {
 
 
  h1 {
+  color: #80ccc4;
   display: flex;
   position: absolute;  
   left: 50%;                       
@@ -153,7 +153,7 @@ body {
 }
 
 #h1:hover {
-  color: yellow !important;
+  color: #b2fff7 !important;
 }
 
 #singlePokemonBox {
@@ -178,12 +178,6 @@ body {
   justify-content: column;
   align-items: center;
   justify-content: center;
-} 
-
-
-#scroll-box {
-
-
 } 
 
   

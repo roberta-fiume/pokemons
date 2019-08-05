@@ -1,19 +1,16 @@
 <template>
     <div id="app">
-     
-  
-      
          <vue-glide class="demo" :bullet="true">
                 <vue-glide-slide
                    v-for="pokemon in infoPokemonsProp">
-                      <pokemon-component  :pokemonName="pokemon.name" :indexProp="pokemon"></pokemon-component> 
+                      <pokemon-component :pokemonName="pokemon.name" :indexProp="pokemon"></pokemon-component> 
                 </vue-glide-slide>
                 <template slot="control">
-                    <button data-glide-dir="<" class="controls">prev</button>
-                    <button data-glide-dir=">" class="controls">next</button>
+                    <button data-glide-dir="<" class="controls"> < </button>
+                    <button data-glide-dir=">" class="controls"> > </button>
                 </template> 
                 <div data-glide-el="controls[nav]">
-                    <button data-glide-dir="=0" ></button>
+                    <button data-glide-dir="=0"></button>
                     <button data-glide-dir="=1"></button>
                     <button data-glide-dir="=2"></button>
                     <button data-glide-dir="=3"></button>
@@ -23,7 +20,7 @@
                     <button data-glide-dir="=7"></button>
                     <button data-glide-dir="=8"></button>
                     <button data-glide-dir="=9"></button>
-                    </div>
+                  </div>
         </vue-glide> 
     </div>
 </template> 
@@ -55,7 +52,6 @@ export default {
 
 
     #app {
-        
         font-family: 'Avenir', Helvetica, Arial, sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
@@ -67,9 +63,9 @@ export default {
     .glide {
       &__slide {
         display: flex;
-        border: 2px solid #ccc;
+        border: 2px solid white;
         width: 550px;
-        height: 550px;
+        height: 450px;
         align-items: center;
         justify-content: center;
         color: #aaa;
@@ -83,7 +79,7 @@ export default {
           color: #fff;
            opacity: 1;
           background: linear-gradient(-45deg,#ed145b,#7b31f4);
-          background-color: limegreen;
+          background-color: rgb(243, 219, 7);
         }
       }
     }
@@ -102,6 +98,7 @@ export default {
         cursor: pointer;
         width: 70px;
         height: 70px;
+        margin: 10px;
     }
 
     button[data-glide-dir="<"] {
@@ -113,14 +110,24 @@ export default {
     }
 
     .glide__bullet {
-        background-color: yellow;
+        background-color: #E0E0E0;
         border-style: none;
         color: inherit;
-        width: 50px;
-        height: 50px;
+        width: 30px;
+        height: 30px;
         border-radius: 50%;
         margin: 10px;
     }
+
+    .glide__bullets {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      height: 100px;
+      // background-color: yellow;
+      margin-top: 30px;
+    }
+
 
 
 }

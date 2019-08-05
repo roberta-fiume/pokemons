@@ -1,12 +1,11 @@
 <template>
     <div>
         <v-flex xs12>
-            <v-card color="grey darken-1" class="white--text">
-            
+            <v-card color="#212121" class="white--text">
                     <v-card-title class="justify-center" >
                         <div>
                             <v-card-text class="v-card_text">
-                            <h2 class="display-2 font-weight-medium white--text mt-4"><v-icon left large>remove_red_eye</v-icon>WATCH THEM ALL</h2>
+                            <h2 class="display-2 font-weight-medium white--text mt-4"><v-icon left large color="#4f9b94">remove_red_eye</v-icon>WATCH THEM ALL</h2>
                             </v-card-text>
                             <div class="body-2 ma-4" id="pokemonTitle">
                                 <span class="display-1 font-weight-light white--text text--lighten-2"> Name:</span>
@@ -17,8 +16,8 @@
                             </v-flex>
 
                             <v-card-actions>
-                                <v-btn dark large @click="goToPreviousPokemon" v-if="previousButton" class="white--text text--lighten-2">PREVIOUS</v-btn>
-                                <v-btn dark large  @click="goToNextPokemon" v-if="nextButton"  class="white--text text--lighten-2">NEXT</v-btn>
+                                <v-btn large @click="goToPreviousPokemon" v-if="previousButton" color="#4f9b94" class="#000000--text">PREVIOUS</v-btn>
+                                <v-btn large  @click="goToNextPokemon" v-if="nextButton" color="#4f9b94" class="#000000--text">NEXT</v-btn>
                             </v-card-actions>
                         </div>
 
@@ -216,15 +215,27 @@ import db from '@/fb'
           box-shadow: 0 0 0 50px rgba(0, 0, 0, 0);
      }
 }
+.v-btn:hover {
+ background-color: #80ccc4;
+}
 
 .v-btn__content:hover {
-    color: #FFC400;
+    color:#000000;
     animation: shadow-pulse 1s 1;   
 }
 
 .shadow:hover {
   box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.5);
 }
+
+/* primary: #212121
+   primary Light: #484848
+   primary dark: #000000
+   secondary: #80cbc4
+   secondary dark: #4f9a94
+   secondary light: #b2fef7
+*/
+
 
 
 
