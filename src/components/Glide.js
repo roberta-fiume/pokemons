@@ -179,6 +179,7 @@ export default {
 
   computed: {
     currentSlide () {
+      console.log("BULLET")
       return this.glide.index
     },
     slidesCount () {
@@ -289,6 +290,7 @@ export default {
      * @returns {number} - index of slide
      */
     addEventListenerToSlide () {
+      console.log("SLIDEEEEES")
       let slides = document.querySelectorAll('.glide__slide')
 
       slides = Array.from(slides)

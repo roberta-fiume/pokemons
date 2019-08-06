@@ -1,9 +1,9 @@
 <template>
     <div> 
-        <v-card class="ma-5 card" color="grey darken-3" dark max-width="400" >
+        <v-card class="ma-5 card" color="grey darken-3" dark max-width="400px" max-height="500px" >
           
             <v-card width="380px">
-                <v-layout align-center justify-center><img :src="linksForImages" width="200px" height="200px" /></v-layout >
+                <v-layout class="300px" align-center justify-center><img :src="linksForImages" width="200px" height="200px"/></v-layout >
             </v-card>
              <v-card-title class="v-card_title">
                 <v-icon left small>create</v-icon>
@@ -86,7 +86,8 @@
         data() {
             return {
                 linksForImages: "",
-                owlCarousel: ""
+                owlCarousel: "",
+               
             }
         },
 
@@ -149,6 +150,7 @@
     }
 
     .v-card_title {
+        margin-top: 10px;
         height: 45px;
     }
 
@@ -156,6 +158,11 @@
         height: 45px;
     }
 
+   .layout {
+    height: 300px;
+   }
+
+   
     //     #app{
     //         font-family: 'Avenir', Helvetica, Arial, sans-serif;
     //         -webkit-font-smoothing: antialiased;

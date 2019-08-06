@@ -3,7 +3,7 @@
          <vue-glide class="demo" :bullet="true">
                 <vue-glide-slide
                    v-for="pokemon in infoPokemonsProp">
-                      <pokemon-component :pokemonName="pokemon.name" :indexProp="pokemon" ></pokemon-component> 
+                      <pokemon-component :pokemonName="pokemon.name" :indexProp="pokemon" :scaledImg="scaledImg"></pokemon-component> 
                 </vue-glide-slide>
                 <template slot="control">
                     <button data-glide-dir="<" class="controls"> < </button>
@@ -43,10 +43,9 @@ export default {
 
     data() {
         return {
-          
+           scaledImg: 'scaled'
         }
 
-      
     },
 
     watch: {
@@ -56,11 +55,8 @@ export default {
 
     created() {
       let names = this.capitalizeAllPokemonNames(this.infoPokemonsProp);
-      console.log("THESE ARE THE NAMESSS",names);
       for (var i = 0; i < this.infoPokemonsProp.length; i++) {
-          console.log("these are the nameess iii", names[i])
           this.infoPokemonsProp[i].name = names[i];
-          console.log(this.infoPokemonsProp[i].name);
       }
       
     },
@@ -71,7 +67,7 @@ export default {
            for (var i = 0; i < infoPokemonsProp.length; i++) {
              names.push(this.capitalizeFirstLetter(infoPokemonsProp[i].name));
            }
-           
+
            return names
        },
 
@@ -166,6 +162,10 @@ export default {
       // background-color: yellow;
       margin-top: 30px;
     }
+
+    .scaled {
+        transform: scale(1.3); /* Equal to scaleX(0.7) scaleY(0.7) */
+   }
 
 
 
