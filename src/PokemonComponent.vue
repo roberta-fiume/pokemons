@@ -3,9 +3,9 @@
         <v-card class="ma-5 card" color="grey darken-3" dark max-width="400" >
             <v-card-title>
                 <v-icon left>create</v-icon>
-                <span class="headline font-weight-light">Name: </span><h3 class="display-1 ml-2">{{pokemonName}}</h3>
+                <span class="headline font-weight-light">Name: </span><h3 class="display-1 ml-2">{{pokemonName }}</h3>
             </v-card-title>
-            <v-card class="purple lighten-5"  width="380px">
+            <v-card width="380px">
                 <v-layout align-center justify-center><img :src="linksForImages" width="200px" height="200px" /></v-layout >
             </v-card>
             <v-card-actions>
@@ -61,11 +61,6 @@
         </vue-glide> 
         
         -->
-       
-                
-       
-
-
 
     </div>
 </template>

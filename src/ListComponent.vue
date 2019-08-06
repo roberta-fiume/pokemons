@@ -1,10 +1,9 @@
 <template>
     <div id="app">
          <vue-glide class="demo" :bullet="true">
-            
                 <vue-glide-slide
                    v-for="pokemon in infoPokemonsProp">
-                      <pokemon-component :pokemonName="pokemon.name" :indexProp="pokemon"></pokemon-component> 
+                      <pokemon-component :pokemonName="pokemon.name" :indexProp="pokemon" ></pokemon-component> 
                 </vue-glide-slide>
                 <template slot="control">
                     <button data-glide-dir="<" class="controls"> < </button>
@@ -44,10 +43,49 @@ export default {
 
     data() {
         return {
-
+          
         }
+
+      
     },
+
+    watch: {
+      
+    },
+   
+
+    created() {
+      let names = this.capitalizeAllPokemonNames(this.infoPokemonsProp);
+      console.log("THESE ARE THE NAMESSS",names);
+      for (var i = 0; i < this.infoPokemonsProp.length; i++) {
+          console.log("these are the nameess iii", names[i])
+          this.infoPokemonsProp[i].name = names[i];
+          console.log(this.infoPokemonsProp[i].name);
+      }
+      
+    },
+
+    methods: {
+        capitalizeAllPokemonNames(infoPokemonsProp) {
+            let names = [];
+           for (var i = 0; i < infoPokemonsProp.length; i++) {
+             names.push(this.capitalizeFirstLetter(infoPokemonsProp[i].name));
+           }
+           
+           return names
+       },
+
+    capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
+
+    }
+
 }
+
+    
+  
 </script>
 <style lang="scss">
 
