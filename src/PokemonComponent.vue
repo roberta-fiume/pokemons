@@ -1,38 +1,42 @@
 <template>
     <div> 
         <v-card class="ma-5 card" color="grey darken-3" dark max-width="400" >
-            <v-card-title>
-                <v-icon left>create</v-icon>
-                <span class="headline font-weight-light">Name: </span><h3 class="display-1 ml-2">{{pokemonName }}</h3>
-            </v-card-title>
+          
             <v-card width="380px">
                 <v-layout align-center justify-center><img :src="linksForImages" width="200px" height="200px" /></v-layout >
             </v-card>
-            <v-card-actions>
+             <v-card-title class="v-card_title">
+                <v-icon left small>create</v-icon>
+                <span class="title font-weight-light">Name: </span><h3 class="title ml-2">{{pokemonName }}</h3>
+            </v-card-title>
+             
+            <v-card-actions class="v-card_actions">
                 <v-list-tile class="grow">
-                        <v-layout align-center justify-start>
+                        <v-layout align-center justify-start class="v-list_title">
                             <v-btn icon>
-                                <v-icon>star</v-icon>
+                                <v-icon class="pa-0" small>star</v-icon>
                             </v-btn>
                             
                             <v-btn icon>
-                                <v-icon>thumb_up_alt</v-icon>
+                                <v-icon small>thumb_up_alt</v-icon>
                             </v-btn>
                         
                         </v-layout>
 
                         <v-layout align-center justify-end>
                             <v-btn icon>
-                                <v-icon>favorite</v-icon>
+                                <v-icon small>favorite</v-icon>
                             </v-btn>
                         
                         <v-btn icon >
-                            <v-icon>share</v-icon>
+                            <v-icon small>share</v-icon>
                             </v-btn>
                             <span class="body-1 ml-1">SHARE</span>
                         </v-layout>
                 </v-list-tile>
             </v-card-actions>
+
+         
         </v-card>  
         
 <!-- 
@@ -138,6 +142,18 @@
       display: flex;
       align-items: center;
       justify-content: center; 
+    }
+
+    .v-list__tile {
+        padding: 0px;
+    }
+
+    .v-card_title {
+        height: 45px;
+    }
+
+    .v-card_actions {
+        height: 45px;
     }
 
     //     #app{
