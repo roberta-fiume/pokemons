@@ -1,6 +1,7 @@
 <template>
     <div id="app">
          <vue-glide class="demo" :bullet="true">
+            
                 <vue-glide-slide
                    v-for="pokemon in infoPokemonsProp">
                       <pokemon-component :pokemonName="pokemon.name" :indexProp="pokemon"></pokemon-component> 
@@ -63,7 +64,7 @@ export default {
     .glide {
       &__slide {
         display: flex;
-        border: 2px solid white;
+        border: 2px solid #b2fef7;
         width: 550px;
         height: 450px;
         align-items: center;
@@ -78,27 +79,27 @@ export default {
           border: none;
           color: #fff;
            opacity: 1;
-          background: linear-gradient(-45deg,#ed145b,#7b31f4);
-          background-color: rgb(243, 219, 7);
+         background: linear-gradient(-45deg,#8cf3e577,#0d4350);
+        //   background: linear-gradient(-45deg,#ed145b,#7b31f4);
+          background-color: #80cbc4;
         }
       }
     }
 }
 
     .controls {
-        font-size: 18px;
+        font-size: 30px;
         position: absolute;
         border: 0;
         outline: 0;
         padding: 10px;
         border-radius: 3px;
-        background-color: blue;
-        opacity: 0.5;
-        color: white;
+        background-color: #4f9a94;
+        color: #000000;
         cursor: pointer;
         width: 70px;
         height: 70px;
-        margin: 10px;
+        margin: 30px;
     }
 
     button[data-glide-dir="<"] {
@@ -110,11 +111,11 @@ export default {
     }
 
     .glide__bullet {
-        background-color: #E0E0E0;
+        background-color: #4f9a94;
         border-style: none;
         color: inherit;
-        width: 30px;
-        height: 30px;
+        width: 20px;
+        height: 20px;
         border-radius: 50%;
         margin: 10px;
     }

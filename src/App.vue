@@ -33,7 +33,10 @@
             <SinglePokemon :infoSinglePokemonProp="infoPokemons" />
           </div>
 
-          <div class="grey darken-3" id="scoll-box" v-if="showDivPokemon">
+          <div id="scoll-box" v-if="showDivPokemon">
+             <v-card-text class="v-card_text">
+                <h2 class="display-2 font-weight-medium white--text mt-4"><v-icon left large color="#4f9b94">create</v-icon>LIST THEM ALL</h2>
+             </v-card-text>
               <ListComponent :infoPokemonsProp="infoPokemons"/>
           </div>
        </div>
@@ -123,6 +126,14 @@ body {
   height: 100%;
 }
 
+.v-card_text {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex-direction: column;
+    align-self: center;
+}
+
 #pokemon-ball {
   display: flex;
   position: absolute; 
@@ -179,6 +190,10 @@ body {
   align-items: center;
   justify-content: center;
 } 
+
+#scoll-box {
+  background-color: #212121;
+}
 
   
 
