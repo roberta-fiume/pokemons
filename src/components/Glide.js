@@ -2,7 +2,9 @@ import Glide from '@glidejs/glide'
 import '@glidejs/glide/dist/css/glide.core.min.css'
 import events from './events'
 
+
 export default {
+
   name: 'VueGlide',
 
   model: {
@@ -118,13 +120,30 @@ export default {
     active: {
       type: Number,
       default: null
+    },
+
+    example: {
+      type: String,
+      default: 'hello'
+    }
+
+  },
+
+
+  data() {
+    return {
+      glide: undefined,
+      scale: "transform"
     }
   },
 
-  data () {
-    return {
-      glide: undefined
-    }
+  components: {
+
+  },
+
+  created() { 
+    console.log("I AM CREATED GLIDEEE")
+    console.log("THIS I THE PROPPPPP", this.example)
   },
 
   render (h) {
@@ -171,26 +190,42 @@ export default {
     )
   },
 
+
   watch: {
     active () {
       this.changeSlideByModel()
+    },
+    example() {
+      this.example = this.scale;
+      console.log("I AM WATCHEDDDD AND CHANGEDDD", this.example)
     }
+  
   },
+
+  created() {
+    console.log("TRASNFROMEDDDDDDDDDD IN CREATED", this.example)
+    },
+ 
 
   computed: {
     currentSlide () {
-      console.log("BULLET")
+      // console.log("BULLET")
+
       return this.glide.index
     },
     slidesCount () {
       return this.$slots.default.filter(
         c => c.componentOptions && c.componentOptions.tag === 'vue-glide-slide'
       ).length
-    }
+    },
+
   },
 
   mounted () {
-    this.init()
+    this.init(),
+    this.example = this.scale;
+    console.log("I am transformeddd IN MOUNTED", this.example);
+    console.log("HELLOOOOOOO")
   },
 
   methods: {
@@ -290,7 +325,6 @@ export default {
      * @returns {number} - index of slide
      */
     addEventListenerToSlide () {
-      console.log("SLIDEEEEES")
       let slides = document.querySelectorAll('.glide__slide')
 
       slides = Array.from(slides)
@@ -298,6 +332,7 @@ export default {
       slides.forEach(el => {
         el.addEventListener('click', e => {
           // Recursive bubbling from nested elements to find '.glide__slide'
+          
           const recursive = el => {
             const parent = el.parentNode
             const contain = parent.classList.contains('glide__slide')

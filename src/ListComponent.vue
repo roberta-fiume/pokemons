@@ -1,9 +1,9 @@
 <template>
     <div id="app">
-         <vue-glide class="demo" :bullet="true">
+         <vue-glide class="demo" :bullet="true" :exampleProp="example" >
                 <vue-glide-slide
-                   v-for="pokemon in infoPokemonsProp">
-                      <pokemon-component :pokemonName="pokemon.name" :indexProp="pokemon" :scaledImg="scaledImg"></pokemon-component> 
+                   v-for="pokemon in infoPokemonsProp" >
+                      <pokemon-component :pokemonName="pokemon.name" :indexProp="pokemon" :scaledImg="scaledImg" :fromGlideProp="example"></pokemon-component> 
                 </vue-glide-slide>
                 <template slot="control">
                     <button data-glide-dir="<" class="controls"> < </button>
@@ -33,17 +33,20 @@ import VueGlide from './components/Glide'
 import VueGlideSlide from './components/GlideSlide'
 
 
+
 export default {
     props: ['infoPokemonsProp'],  
     components: {
        PokemonComponent,
         [VueGlide.name]: VueGlide,
-        [VueGlideSlide.name]: VueGlideSlide
+        [VueGlideSlide.name]: VueGlideSlide,
+      
     },
 
     data() {
         return {
-           scaledImg: 'scaled'
+        scaledImg: "transform: scale(1.3)",
+        example: "hello"
         }
 
     },
@@ -58,7 +61,7 @@ export default {
       for (var i = 0; i < this.infoPokemonsProp.length; i++) {
           this.infoPokemonsProp[i].name = names[i];
       }
-      
+ 
     },
 
     methods: {

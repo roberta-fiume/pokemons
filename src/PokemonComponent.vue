@@ -3,7 +3,7 @@
         <v-card class="ma-5 card" color="grey darken-3" dark max-width="400px" max-height="500px" >
           
             <v-card width="380px">
-                <v-layout class="300px" align-center justify-center><img :src="linksForImages" width="200px" height="200px"/></v-layout >
+                <v-layout class="300px" align-center justify-center><img :src="linksForImages" width="200px" height="200px"  :style="scaledImg"/></v-layout >
             </v-card>
              <v-card-title class="v-card_title">
                 <v-icon left small>create</v-icon>
@@ -73,14 +73,12 @@
 
     export default {
 
-        components: {
-           
-        },
-
         props: {
             pokemonName: String,
             pokemonUrl: String,
             indexProp: Object,
+            scaledImg: String,
+            fromGlideProp: String
         },
 
         data() {
@@ -96,19 +94,18 @@
             let linkImages = this.getLinksForImages();
             // console.log("THIS IS THE LINK FOR THE IMAGES IN CREATED", this.linkImages)
 
-             window.addEventListener('scroll', this.handleScroll);
+       
         },
 
-        destroyed () {
-            window.removeEventListener('scroll', this.handleScroll);
+        updated() {
+            console.log("I am the prop from glide", this.fromGlideProp)
         },
 
         watch: {
             linksForImages() {
                 // console.log("I am changeddddd:",this.linksForImages);
-                this.getImagesFromApi() 
-            
-            } 
+                this.getImagesFromApi()
+            }
         },
 
         methods: {
