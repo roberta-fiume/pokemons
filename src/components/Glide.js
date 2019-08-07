@@ -129,21 +129,28 @@ export default {
 
   },
 
-
+  
   data() {
     return {
       glide: undefined,
       scale: "transform"
+      
     }
   },
 
-  components: {
+  watch: {
+    active () {
+      this.changeSlideByModel()
+    },
 
+    example() {
+      // this.example = this.scale;
+      console.log("i AM WATCHEDDD", this.example)
+    } 
   },
 
-  created() { 
-    console.log("I AM CREATED GLIDEEE")
-    console.log("THIS I THE PROPPPPP", this.example)
+  created() {
+    console.log("I CHANGED IN CREATED", this.class)
   },
 
   render (h) {
@@ -190,23 +197,6 @@ export default {
     )
   },
 
-
-  watch: {
-    active () {
-      this.changeSlideByModel()
-    },
-    example() {
-      this.example = this.scale;
-      console.log("I AM WATCHEDDDD AND CHANGEDDD", this.example)
-    }
-  
-  },
-
-  created() {
-    console.log("TRASNFROMEDDDDDDDDDD IN CREATED", this.example)
-    },
- 
-
   computed: {
     currentSlide () {
       // console.log("BULLET")
@@ -219,16 +209,28 @@ export default {
       ).length
     },
 
+    class(){ 
+     this.example = this.scale;
+     console.log("perche cazz non funzionooooo", this.example)
+      return this.example === 'transform' ? 'works!!!' : 'notWorking'
+    }
+
   },
 
   mounted () {
     this.init(),
-    this.example = this.scale;
-    console.log("I am transformeddd IN MOUNTED", this.example);
-    console.log("HELLOOOOOOO")
+    // this.example = this.scale;
+    // console.log("i AM TRANSFORMED IN CREATED", this.class)
+    console.log("I am transformeddd IN MOUNTED", this.class);
   },
 
   methods: {
+  
+    // transformation() {
+    //   this.example = this.scale;
+    //   return this.example
+    // },
+
     /**
      * Initialization glide
      */

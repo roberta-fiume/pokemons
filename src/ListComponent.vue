@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-         <vue-glide class="demo" :bullet="true" :exampleProp="example" >
+         <vue-glide class="demo" :bullet="true" :example-Prop="example" >
                 <vue-glide-slide
                    v-for="pokemon in infoPokemonsProp" >
                       <pokemon-component :pokemonName="pokemon.name" :indexProp="pokemon" :scaledImg="scaledImg" :fromGlideProp="example"></pokemon-component> 

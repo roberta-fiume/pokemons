@@ -97,9 +97,9 @@
        
         },
 
-        updated() {
-            console.log("I am the prop from glide", this.fromGlideProp)
-        },
+        // updated() {
+        //     console.log("I am the prop from glide", this.fromGlideProp)
+        // },
 
         watch: {
             linksForImages() {
