@@ -70,6 +70,7 @@
 </template>
 
 <script>
+import model from './model.js'
 
 
     export default {
@@ -89,6 +90,7 @@
             return {
                 linksForImages: "",
                 owlCarousel: "",
+                definitive: model.data.isImgScaled
             }
         },
 
@@ -98,16 +100,30 @@
             // console.log("THIS IS THE LINK FOR THE IMAGES IN CREATED", this.linkImages)
         },
 
-         mounted() {
-            let thirdProperty = this.method();
-            console.log("THIS IS THE VALUE FROM THE PARENT IN POKEMON COMPONENT",thirdProperty)
+        mounted(){
+           let scaledModel = this.method();
+           console.log("I am damnnnnnnnn model", scaledModel);
+           scaledModel = this.definitive;
         },
+
+      
 
         watch: {
             linksForImages() {
                 // console.log("I am changeddddd:",this.linksForImages);
                 this.getImagesFromApi()
             },
+            definitve() {
+                  console.log("I AM HOPEEE", this.definitve)
+            }
+
+            
+
+            // method() {
+            //     if ( model.data.isImgScaled === "transform: scale(1.3)") {
+            //         this.definitive = model.data.isImgScaled
+            //     }
+            // }
         
         },
 

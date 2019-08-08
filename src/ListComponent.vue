@@ -31,6 +31,7 @@
 import PokemonComponent from "./PokemonComponent.vue"
 import VueGlide from './components/Glide'
 import VueGlideSlide from './components/GlideSlide'
+import model from './model.js'
 
 
 
@@ -55,16 +56,17 @@ export default {
         scaledImg: "transform: scale(1.3)",
         example: "hello",
         valueFromChild: "nothingYet",
-        scaling:""
+        scaling:"",
+        scaled: model.data.isImgScaled
         }
 
     },
 
     watch: {
        valueFromChild() {
-            let scaling = this.parentMethod();
-            console.log("I AM CHANGED IN WATCH OF LIST COMPONENT", this.scaling)
-             console.log("I AM TRANSFORM IN WATCH OF LIST COMPONENT", this.valueFromChild)
+            let scaledModel = this.parentMethod();
+            console.log("I AM CHANGED IN WATCH OF LIST COMPONENT", scaledModel)
+            console.log("I AM TRANSFORM IN WATCH OF LIST COMPONENT", this.valueFromChild)
         }
     },
 
@@ -97,8 +99,13 @@ export default {
 
         parentMethod() {
             this.scaling = this.valueFromChild;
-            console.log("THIS IS THIRD PROPERTY IN PARENT METHOD", this.scaling)
-            return this.scaling
+            let scaledModel = model.data.isImgScaled
+            scaledModel = this.scaling
+
+            console.log("THIS IS SCALING PROPERTY IN PARENT METHOD", this.scaling)
+            
+            console.log("THIS IS THE MODEL CHANGED IN PARENT METHOD", scaledModel)
+            return scaledModel
         }
     }
 }

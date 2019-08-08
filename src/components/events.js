@@ -18,5 +18,9 @@ export default [
     'swipe.move',
     'swipe.start',
     'translate.jump',
-    'update'
+    'update',
   ]
+
+
+
+ 
