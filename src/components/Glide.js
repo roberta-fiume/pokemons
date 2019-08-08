@@ -3,6 +3,7 @@ import '@glidejs/glide/dist/css/glide.core.min.css'
 import events from './events'
 
 
+
 export default {
 
   name: 'VueGlide',
@@ -124,7 +125,8 @@ export default {
 
     example: {
       type: String,
-      default: 'hello'
+      default: 'hello',
+     
     }
 
   },
@@ -133,8 +135,8 @@ export default {
   data() {
     return {
       glide: undefined,
-      scale: "transform"
-      
+      scale: "transform: scale(1.3)",
+      mutateProp: this.example
     }
   },
 
@@ -145,7 +147,7 @@ export default {
 
     example() {
       // this.example = this.scale;
-      console.log("i AM WATCHEDDD", this.example)
+      console.log("i AM WATCHEDDD", this.mutateProp)
     } 
   },
 
@@ -200,6 +202,8 @@ export default {
   computed: {
     currentSlide () {
       // console.log("BULLET")
+     console.log("THIS IS SCALEEEEEE IN SCLIDE", this.scale)
+      this.$emit('childToParent', this.scale)
 
       return this.glide.index
     },
@@ -210,18 +214,18 @@ export default {
     },
 
     class(){ 
-     this.example = this.scale;
-     console.log("perche cazz non funzionooooo", this.example)
-      return this.example === 'transform' ? 'works!!!' : 'notWorking'
+     this.mutateProp = this.scale;
+     console.log("perche cazz non funzionooooo", this.mutateProp)
+      return this.mutateProp === 'transform' ? 'works!!!' : 'notWorking'
     }
 
   },
 
   mounted () {
-    this.init(),
+    this.init()
     // this.example = this.scale;
     // console.log("i AM TRANSFORMED IN CREATED", this.class)
-    console.log("I am transformeddd IN MOUNTED", this.class);
+
   },
 
   methods: {

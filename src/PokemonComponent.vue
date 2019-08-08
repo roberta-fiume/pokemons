@@ -39,7 +39,7 @@
          
         </v-card>  
         
-<!-- 
+    <!-- 
                  <vue-glide class="demo" :bullet="true">
                 <vue-glide-slide v-for="i in 10" :key="i">
                     Slide {{ i }}
@@ -71,6 +71,7 @@
 
 <script>
 
+
     export default {
 
         props: {
@@ -78,14 +79,16 @@
             pokemonUrl: String,
             indexProp: Object,
             scaledImg: String,
-            fromGlideProp: String
+            valueFromGlideProp: String,
+            method: { 
+            type: Function 
+            },
         },
 
         data() {
             return {
                 linksForImages: "",
                 owlCarousel: "",
-               
             }
         },
 
@@ -93,19 +96,19 @@
         // console.log('I am the INDEX', this.indexProp);
             let linkImages = this.getLinksForImages();
             // console.log("THIS IS THE LINK FOR THE IMAGES IN CREATED", this.linkImages)
-
-       
         },
 
-        // updated() {
-        //     console.log("I am the prop from glide", this.fromGlideProp)
-        // },
+         mounted() {
+            let thirdProperty = this.method();
+            console.log("THIS IS THE VALUE FROM THE PARENT IN POKEMON COMPONENT",thirdProperty)
+        },
 
         watch: {
             linksForImages() {
                 // console.log("I am changeddddd:",this.linksForImages);
                 this.getImagesFromApi()
-            }
+            },
+        
         },
 
         methods: {

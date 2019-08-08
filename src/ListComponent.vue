@@ -1,9 +1,9 @@
 <template>
     <div id="app">
-         <vue-glide class="demo" :bullet="true" :example-Prop="example" >
+         <vue-glide class="demo" :bullet="true" :example-Prop="example" v-on:childToParent="onChildClick">
                 <vue-glide-slide
                    v-for="pokemon in infoPokemonsProp" >
-                      <pokemon-component :pokemonName="pokemon.name" :indexProp="pokemon" :scaledImg="scaledImg" :fromGlideProp="example"></pokemon-component> 
+                      <pokemon-component :pokemonName="pokemon.name" :indexProp="pokemon" :scaledImg="scaledImg" :method="parentMethod"></pokemon-component> 
                 </vue-glide-slide>
                 <template slot="control">
                     <button data-glide-dir="<" class="controls"> < </button>
@@ -43,25 +43,37 @@ export default {
       
     },
 
+      computed: {
+        passValue() {
+             this.thirdProperty = this.valueFromGlide
+            return this.thirdProperty
+        }
+    },
+
     data() {
         return {
         scaledImg: "transform: scale(1.3)",
-        example: "hello"
+        example: "hello",
+        valueFromChild: "nothingYet",
+        scaling:""
         }
 
     },
 
     watch: {
-      
+       valueFromChild() {
+            let scaling = this.parentMethod();
+            console.log("I AM CHANGED IN WATCH OF LIST COMPONENT", this.scaling)
+             console.log("I AM TRANSFORM IN WATCH OF LIST COMPONENT", this.valueFromChild)
+        }
     },
-   
 
     created() {
       let names = this.capitalizeAllPokemonNames(this.infoPokemonsProp);
       for (var i = 0; i < this.infoPokemonsProp.length; i++) {
           this.infoPokemonsProp[i].name = names[i];
       }
- 
+
     },
 
     methods: {
@@ -76,11 +88,19 @@ export default {
 
     capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
+    },
+
+      onChildClick(value) {
+             this.valueFromChild = value;
+           console.log("THIS IS THE VALUE FROM THE CHILD", value)
+        },
+
+        parentMethod() {
+            this.scaling = this.valueFromChild;
+            console.log("THIS IS THIRD PROPERTY IN PARENT METHOD", this.scaling)
+            return this.scaling
+        }
     }
-
-
-    }
-
 }
 
     
