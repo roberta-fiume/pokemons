@@ -3,11 +3,11 @@
         <v-card class="ma-5 card" color="grey darken-3" dark max-width="400px" max-height="500px" >
           
             <v-card width="380px">
-                <v-layout class="300px" align-center justify-center><img :src="linksForImages" width="200px" height="200px"  :style="scaledImg"/></v-layout >
+                <v-layout class="300px" align-center justify-center><img :src="linksForImages" width="200px" height="200px" :class="{scaleClass:scaleClass}"/></v-layout >
             </v-card>
              <v-card-title class="v-card_title">
                 <v-icon left small>create</v-icon>
-                <span class="title font-weight-light">Name: </span><h3 class="title ml-2">{{pokemonName }}</h3>
+                <span class="title font-weight-light">Name: </span><h3 class="title ml-2">{{pokemonName}}</h3>
             </v-card-title>
              
             <v-card-actions class="v-card_actions">
@@ -71,6 +71,7 @@
 
 <script>
 import model from './model.js'
+import { EventBus } from '@/eventBus.js';
 
 
     export default {
@@ -79,7 +80,6 @@ import model from './model.js'
             pokemonName: String,
             pokemonUrl: String,
             indexProp: Object,
-            scaledImg: String,
             valueFromGlideProp: String,
             method: { 
             type: Function 
@@ -90,7 +90,9 @@ import model from './model.js'
             return {
                 linksForImages: "",
                 owlCarousel: "",
-                definitive: model.data.isImgScaled
+                scaleClass: false,
+                height: '350px',
+                currentIndex: null
             }
         },
 
@@ -106,19 +108,30 @@ import model from './model.js'
            scaledModel = this.definitive;
         },
 
-      
+          updated(){
+              EventBus.$on('i-got-clicked', scale => {
+                this.currentIndex = scale
+                if (this.currentIndex === 0|| 1 & this.pokemonName === 'Bulbasaur' || "Ivysaur") {
+                    this.scaleClass = true
+                } else {
+                    this.scaleClass = false
+                }
+                   console.log("I AM THE INDEX",this.currentIndex)
+                 console.log("I AM FINALLY CHANGEEED",this.scaleClass)
+                });
+                
+            },
 
         watch: {
             linksForImages() {
                 // console.log("I am changeddddd:",this.linksForImages);
                 this.getImagesFromApi()
             },
-            definitve() {
-                  console.log("I AM HOPEEE", this.definitve)
+            transform() {
+                  console.log("I AM WATCHED AND TRANSFORMED", this.transform)
             }
 
-            
-
+    
             // method() {
             //     if ( model.data.isImgScaled === "transform: scale(1.3)") {
             //         this.definitive = model.data.isImgScaled
@@ -145,6 +158,9 @@ import model from './model.js'
                     console.log("THIS IS THE ERROR:",error);
                 })
             },
+
+            
+
 
 
             
@@ -177,6 +193,19 @@ import model from './model.js'
    .layout {
     height: 300px;
    }
+
+      .scaled {
+         transform: scale(1.3);
+   }
+
+   .scaleClass {
+        transform: scale(1.3); /* Equal to scaleX(0.7) scaleY(0.7) */
+   }
+
+    .example {
+        width: 300px;
+        height: 300px;
+    }
 
    
     //     #app{

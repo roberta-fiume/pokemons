@@ -3,7 +3,7 @@
          <vue-glide class="demo" :bullet="true" :example-Prop="example" v-on:childToParent="onChildClick">
                 <vue-glide-slide
                    v-for="pokemon in infoPokemonsProp" >
-                      <pokemon-component :pokemonName="pokemon.name" :indexProp="pokemon" :scaledImg="scaledImg" :method="parentMethod"></pokemon-component> 
+                      <pokemon-component :pokemonName="pokemon.name" :indexProp="pokemon" :method="parentMethod" ></pokemon-component> 
                 </vue-glide-slide>
                 <template slot="control">
                     <button data-glide-dir="<" class="controls"> < </button>
@@ -28,87 +28,87 @@
 <script> 
 
 
-import PokemonComponent from "./PokemonComponent.vue"
-import VueGlide from './components/Glide'
-import VueGlideSlide from './components/GlideSlide'
-import model from './model.js'
+    import PokemonComponent from "./PokemonComponent.vue"
+    import VueGlide from './components/Glide'
+    import VueGlideSlide from './components/GlideSlide'
+    import model from './model.js'
 
 
 
-export default {
-    props: ['infoPokemonsProp'],  
-    components: {
-       PokemonComponent,
-        [VueGlide.name]: VueGlide,
-        [VueGlideSlide.name]: VueGlideSlide,
-      
-    },
-
-      computed: {
-        passValue() {
-             this.thirdProperty = this.valueFromGlide
-            return this.thirdProperty
-        }
-    },
-
-    data() {
-        return {
-        scaledImg: "transform: scale(1.3)",
-        example: "hello",
-        valueFromChild: "nothingYet",
-        scaling:"",
-        scaled: model.data.isImgScaled
-        }
-
-    },
-
-    watch: {
-       valueFromChild() {
-            let scaledModel = this.parentMethod();
-            console.log("I AM CHANGED IN WATCH OF LIST COMPONENT", scaledModel)
-            console.log("I AM TRANSFORM IN WATCH OF LIST COMPONENT", this.valueFromChild)
-        }
-    },
-
-    created() {
-      let names = this.capitalizeAllPokemonNames(this.infoPokemonsProp);
-      for (var i = 0; i < this.infoPokemonsProp.length; i++) {
-          this.infoPokemonsProp[i].name = names[i];
-      }
-
-    },
-
-    methods: {
-        capitalizeAllPokemonNames(infoPokemonsProp) {
-            let names = [];
-           for (var i = 0; i < infoPokemonsProp.length; i++) {
-             names.push(this.capitalizeFirstLetter(infoPokemonsProp[i].name));
-           }
-
-           return names
-       },
-
-    capitalizeFirstLetter(string) {
-        return string.charAt(0).toUpperCase() + string.slice(1);
-    },
-
-      onChildClick(value) {
-             this.valueFromChild = value;
-           console.log("THIS IS THE VALUE FROM THE CHILD", value)
+    export default {
+        props: ['infoPokemonsProp'],  
+        components: {
+        PokemonComponent,
+            [VueGlide.name]: VueGlide,
+            [VueGlideSlide.name]: VueGlideSlide,
+        
         },
 
-        parentMethod() {
-            this.scaling = this.valueFromChild;
-            let scaledModel = model.data.isImgScaled
-            scaledModel = this.scaling
+        computed: {
+            passValue() {
+                this.thirdProperty = this.valueFromGlide
+                return this.thirdProperty
+            }
+        },
 
-            console.log("THIS IS SCALING PROPERTY IN PARENT METHOD", this.scaling)
-            
-            console.log("THIS IS THE MODEL CHANGED IN PARENT METHOD", scaledModel)
-            return scaledModel
+        data() {
+            return {
+            scaledImg: "transform: scale(1.3)",
+            example: "hello",
+            valueFromChild: "nothingYet",
+            scaling:"",
+            scaled: model.data.isImgScaled
+            }
+
+        },
+
+        watch: {
+        valueFromChild() {
+                let scaledModel = this.parentMethod();
+                console.log("I AM CHANGED IN WATCH OF LIST COMPONENT", scaledModel)
+                console.log("I AM TRANSFORM IN WATCH OF LIST COMPONENT", this.valueFromChild)
+            }
+        },
+
+        created() {
+        let names = this.capitalizeAllPokemonNames(this.infoPokemonsProp);
+        for (var i = 0; i < this.infoPokemonsProp.length; i++) {
+            this.infoPokemonsProp[i].name = names[i];
+        }
+
+        },
+
+        methods: {
+            capitalizeAllPokemonNames(infoPokemonsProp) {
+                let names = [];
+            for (var i = 0; i < infoPokemonsProp.length; i++) {
+                names.push(this.capitalizeFirstLetter(infoPokemonsProp[i].name));
+            }
+
+            return names
+        },
+
+        capitalizeFirstLetter(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        },
+
+        onChildClick(value) {
+                this.valueFromChild = value;
+            console.log("THIS IS THE VALUE FROM THE CHILD", value)
+            },
+
+            parentMethod() {
+                this.scaling = this.valueFromChild;
+                let scaledModel = model.data.isImgScaled
+                scaledModel = this.scaling
+
+                console.log("THIS IS SCALING PROPERTY IN PARENT METHOD", this.scaling)
+                
+                console.log("THIS IS THE MODEL CHANGED IN PARENT METHOD", scaledModel)
+                return scaledModel
+            }
         }
     }
-}
 
     
   
@@ -193,10 +193,7 @@ export default {
       margin-top: 30px;
     }
 
-    .scaled {
-        transform: scale(1.3); /* Equal to scaleX(0.7) scaleY(0.7) */
-   }
-
+ 
 
 
 }

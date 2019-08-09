@@ -2,7 +2,7 @@ import Glide from '@glidejs/glide'
 import '@glidejs/glide/dist/css/glide.core.min.css'
 import events from './events'
 import model from '@/model.js'
-
+import { EventBus } from '@/eventBus.js';
 
 export default {
 
@@ -201,11 +201,9 @@ export default {
 
   computed: {
     currentSlide () {
-      // console.log("BULLET")
+   
      console.log("THIS IS SCALEEEEEE IN SCLIDE", this.scale)
-      this.$emit('childToParent', this.scale)
-      model.data.isImgScaled = this.scale;
-      console.log("I CHANGE THE DAMN MODEL", model.data.isImgScaled )
+      EventBus.$emit('i-got-clicked', this.glide.index);
 
       return this.glide.index
     },
