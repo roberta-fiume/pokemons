@@ -3,7 +3,7 @@
         <v-card class="ma-5 card" color="grey darken-3" dark max-width="400px" max-height="500px" >
           
             <v-card width="380px">
-                <v-layout class="300px" align-center justify-center><img :src="linksForImages" width="200px" height="200px" :class="{scaleClass:scaleClass}"/></v-layout >
+                <v-layout class="300px" align-center justify-center><img :src="linksForImages" width="200px" height="200px" :class="{scaleClass:scaleClass, notScaled:notScaled}"/></v-layout >
             </v-card>
              <v-card-title class="v-card_title">
                 <v-icon left small>create</v-icon>
@@ -38,33 +38,6 @@
 
          
         </v-card>  
-        
-    <!-- 
-                 <vue-glide class="demo" :bullet="true">
-                <vue-glide-slide v-for="i in 10" :key="i">
-                    Slide {{ i }}
-                </vue-glide-slide>
-
-                <template slot="control">
-                    <button data-glide-dir="<" class="controls">prev</button>
-                    <button data-glide-dir=">" class="controls">next</button>
-                </template> 
-
-                <div data-glide-el="controls[nav]">
-                    <button data-glide-dir="=0" ></button>
-                    <button data-glide-dir="=1"></button>
-                    <button data-glide-dir="=2"></button>
-                    <button data-glide-dir="=3"></button>
-                    <button data-glide-dir="=4"></button>
-                    <button data-glide-dir="=5"></button>
-                    <button data-glide-dir="=6"></button>
-                    <button data-glide-dir="=7"></button>
-                    <button data-glide-dir="=8"></button>
-                    <button data-glide-dir="=9"></button>
-                    </div>
-        </vue-glide> 
-        
-        -->
 
     </div>
 </template>
@@ -80,48 +53,54 @@ import { EventBus } from '@/eventBus.js';
             pokemonName: String,
             pokemonUrl: String,
             indexProp: Object,
-            valueFromGlideProp: String,
-            method: { 
-            type: Function 
-            },
+            index: Number,
+            realIndexProp: Number
         },
 
         data() {
             return {
                 linksForImages: "",
-                owlCarousel: "",
                 scaleClass: false,
-                height: '350px',
+                notScaled: false,
                 currentIndex: null
             }
         },
 
         created() {
-        // console.log('I am the INDEX', this.indexProp);
+        console.log('I am the OBJECTTTTT', this.indexProp);
+        console.log('I am the realIndexProp', this.realIndexProp);
             let linkImages = this.getLinksForImages();
             // console.log("THIS IS THE LINK FOR THE IMAGES IN CREATED", this.linkImages)
         },
 
-        mounted(){
-           let scaledModel = this.method();
-           console.log("I am damnnnnnnnn model", scaledModel);
-           scaledModel = this.definitive;
+        mounted() {
+            for (var i = 0; i < this.$refs.pokemonComponent.length; i++) {
+                console.log("I AM THE INDEXXXX MALDITO IN MOUNTED:", this.$refs.pokemonComponent);
+            }
+            
+
         },
 
-          updated(){
-              EventBus.$on('i-got-clicked', scale => {
-                this.currentIndex = scale
-                if (this.currentIndex === 0|| 1 & this.pokemonName === 'Bulbasaur' || "Ivysaur") {
-                    this.scaleClass = true
-                } else {
-                    this.scaleClass = false
-                }
-                   console.log("I AM THE INDEX",this.currentIndex)
-                 console.log("I AM FINALLY CHANGEEED",this.scaleClass)
-                });
-                
-            },
 
+          updated(){
+             console.log("I AM THE INDEXXXX MALDITO IN UPDATED:",this.$refs.pokemonComponent);
+              EventBus.$on('i-got-clicked', scale => {
+                  function scaleImg(index) {
+                        if (index)  {
+                            this.scaleClass = true;
+                        } else {
+                        this.scaleClass = false; 
+                        }
+                        console.log("I AM THE INDEX",this.currentIndex)
+                        console.log("I AM FINALLY CHANGEEED",this.scaleClass)
+                    }
+                     const scaleImgFunc = scaleImg.bind(this);
+                    scaleImgFunc(scale);
+                });
+           
+            },
+        
+        
         watch: {
             linksForImages() {
                 // console.log("I am changeddddd:",this.linksForImages);
@@ -130,14 +109,6 @@ import { EventBus } from '@/eventBus.js';
             transform() {
                   console.log("I AM WATCHED AND TRANSFORMED", this.transform)
             }
-
-    
-            // method() {
-            //     if ( model.data.isImgScaled === "transform: scale(1.3)") {
-            //         this.definitive = model.data.isImgScaled
-            //     }
-            // }
-        
         },
 
         methods: {
@@ -157,13 +128,7 @@ import { EventBus } from '@/eventBus.js';
                     .catch(function (error) {
                     console.log("THIS IS THE ERROR:",error);
                 })
-            },
-
-            
-
-
-
-            
+            },   
         }     
     }
  
@@ -194,12 +159,13 @@ import { EventBus } from '@/eventBus.js';
     height: 300px;
    }
 
-      .scaled {
-         transform: scale(1.3);
+    .notScaled {
+         width: 200px;
+         height: 300px;
    }
 
    .scaleClass {
-        transform: scale(1.3); /* Equal to scaleX(0.7) scaleY(0.7) */
+        transform: scale(1.3); 
    }
 
     .example {

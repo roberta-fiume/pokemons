@@ -1,9 +1,8 @@
 <template>
     <div id="app">
-         <vue-glide class="demo" :bullet="true" :example-Prop="example" v-on:childToParent="onChildClick">
-                <vue-glide-slide
-                   v-for="pokemon in infoPokemonsProp" >
-                      <pokemon-component :pokemonName="pokemon.name" :indexProp="pokemon" :method="parentMethod" ></pokemon-component> 
+         <vue-glide class="demo" :bullet="true" ref="pokemons">
+                <vue-glide-slide v-for="(pokemon, index) in infoPokemonsProp" >
+                      <pokemon-component :pokemonName="pokemon.name" :indexProp="pokemon" :realIndexProp="index"></pokemon-component> 
                 </vue-glide-slide>
                 <template slot="control">
                     <button data-glide-dir="<" class="controls"> < </button>
@@ -15,7 +14,7 @@
                     <button data-glide-dir="=2"></button>
                     <button data-glide-dir="=3"></button>
                     <button data-glide-dir="=4"></button>
-                    <button data-glide-dir="=5"></button>
+                    <button data-glide-dir="=5">C</button>
                     <button data-glide-dir="=6"></button>
                     <button data-glide-dir="=7"></button>
                     <button data-glide-dir="=8"></button>
@@ -44,36 +43,21 @@
         
         },
 
-        computed: {
-            passValue() {
-                this.thirdProperty = this.valueFromGlide
-                return this.thirdProperty
-            }
-        },
-
         data() {
             return {
-            scaledImg: "transform: scale(1.3)",
-            example: "hello",
-            valueFromChild: "nothingYet",
-            scaling:"",
-            scaled: model.data.isImgScaled
+           
+    
             }
 
         },
 
-        watch: {
-        valueFromChild() {
-                let scaledModel = this.parentMethod();
-                console.log("I AM CHANGED IN WATCH OF LIST COMPONENT", scaledModel)
-                console.log("I AM TRANSFORM IN WATCH OF LIST COMPONENT", this.valueFromChild)
-            }
-        },
 
         created() {
-        let names = this.capitalizeAllPokemonNames(this.infoPokemonsProp);
-        for (var i = 0; i < this.infoPokemonsProp.length; i++) {
-            this.infoPokemonsProp[i].name = names[i];
+            let names = this.capitalizeAllPokemonNames(this.infoPokemonsProp);
+            for (var i = 0; i < this.infoPokemonsProp.length; i++) {
+                this.infoPokemonsProp[i].name = names[i];
+            // console.log("THIS IS INFO POKEMONS PROP IN LIST COMPONENTTTTT", this.infoPokemonsProp)
+           
         }
 
         },
@@ -90,24 +74,14 @@
 
         capitalizeFirstLetter(string) {
             return string.charAt(0).toUpperCase() + string.slice(1);
-        },
-
-        onChildClick(value) {
-                this.valueFromChild = value;
-            console.log("THIS IS THE VALUE FROM THE CHILD", value)
-            },
-
-            parentMethod() {
-                this.scaling = this.valueFromChild;
-                let scaledModel = model.data.isImgScaled
-                scaledModel = this.scaling
-
-                console.log("THIS IS SCALING PROPERTY IN PARENT METHOD", this.scaling)
-                
-                console.log("THIS IS THE MODEL CHANGED IN PARENT METHOD", scaledModel)
-                return scaledModel
-            }
         }
+
+    }
+
+
+       
+
+     
     }
 
     
