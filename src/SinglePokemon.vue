@@ -44,7 +44,6 @@ import db from '@/fb'
             urlsCollection() {
                 let pokemonsUrls = this.orderUrls();  
                 this.singleVideo = pokemonsUrls[this.currentVideoIndex];
-                console.log("THIS IS THE SINGLE VIDEO", this.singleVideo)  
             } 
         },
         
@@ -89,95 +88,72 @@ import db from '@/fb'
                 return this.pokemonName
             },
 
-               goToPreviousPokemon(){
-                    this.currentPokemonIndex--; 
-                    let pokemonName = this.infoSinglePokemonProp[this.currentPokemonIndex].name;
-                    this.pokemonName = pokemonName;
-                    this.goToPreviousVideo();
-                        if (this.pokemonName === "bulbasaur") {
-                            this.previousButton = false;
-                        }
-                    this.nextButton = true;
-                },
-
-                getVideoCollection() {
-                    db.collection('pokemons').get().then((response) => {
-                    for (var i=0; i < response.docs.length; i++) {
-                        let urls = response.docs[i]._document.data.internalValue.root.value.internalValue;
-                        // console.log("URL IN LOOP",urls);
-                           this.docsVideos.push(urls);
+            goToPreviousPokemon(){
+                this.currentPokemonIndex--; 
+                let pokemonName = this.infoSinglePokemonProp[this.currentPokemonIndex].name;
+                this.pokemonName = pokemonName;
+                this.goToPreviousVideo();
+                    if (this.pokemonName === "bulbasaur") {
+                        this.previousButton = false;
                     }
-                     this.urlsCollection = this.docsVideos
-                     console.log("URL COLLECTION IN FUNCTION", this.urlsCollection)
-                    });
+                this.nextButton = true;
+            },
 
-                    return this.urlsCollection
-                },
-
-                orderUrls() {
-                    let bulbasaur = this.urlsCollection[0].replace("charmander", "bulbasaur");
-                    console.log("BULBASAUR", bulbasaur);
-                    let ivysaur = this.urlsCollection[1].replace("beedrill", "ivysaur");
-                    console.log("IVYSAUR", ivysaur);
-                    let venusaur = this.urlsCollection[2].replace("blastoise", "venusaur");
-                    console.log("VENUSAUR", venusaur);
-                    let charmander = this.urlsCollection[3].replace("bulbasaur", "charmander");
-                    console.log("CHARMANDER", charmander);
-                    let charmeleon = this.urlsCollection[4].replace("butterfree", "charmeleon");
-                    console.log("CHARMELEON", charmeleon);
-                    let charizard = this.urlsCollection[5].replace("caterpie", "charizard");
-                    console.log("CHARIZARD", charizard);
-                    let squirtle = this.urlsCollection[6].replace("charizard", "squirtle");
-                    console.log("SQUITLE", squirtle);
-                    let wartortle = this.urlsCollection[7].replace("charmeleon", "wartortle");
-                    console.log("WARTORTLE", wartortle);
-                    let blastoise = this.urlsCollection[8].replace("ivysaur", "blastoise");
-                    console.log("BLASTOISE", blastoise);
-                    let caterpie = this.urlsCollection[9].replace("kakuna", "caterpie");
-                    console.log("CATERPIE", caterpie);
-                    let metapod = this.urlsCollection[10].replace("metapod", "metapod");
-                    console.log("METAPOD", metapod );
-                    let butterfree = this.urlsCollection[11].replace("pidgeot", "butterfree");
-                    console.log("BUTTERFREE", butterfree);
-                    let weedle = this.urlsCollection[12].replace("pidgeotto", "weedle");
-                    console.log("WEEDLE",weedle);
-                    let kakuna = this.urlsCollection[13].replace("pidgey", "kakuna");
-                    console.log("KAKUNA", kakuna);
-                    let beedrill = this.urlsCollection[14].replace("raticate", "beedrill");
-                    console.log("BEEDRILL", beedrill);
-                    let pidgey = this.urlsCollection[15].replace("rattata","pidgey");
-                    console.log("PIDGEY", pidgey);
-                    let pidgeotto = this.urlsCollection[16].replace("squirtle","pidgeotto");
-                    console.log("PIDGEOTTO", pidgeotto);
-                    let pidgeot = this.urlsCollection[17].replace("venusaur","pidgeot");
-                    console.log("PIDGEOT", pidgeot);
-                    let rattata = this.urlsCollection[18].replace("wartortle","rattata");
-                    console.log("RATTATA", rattata);
-                    let raticate = this.urlsCollection[19].replace("weedle","raticate");
-                    console.log("RATICATE", raticate);
-
-                    let pokemonsUrls = [];
-                    pokemonsUrls.push(bulbasaur, ivysaur, venusaur, charmander, charmeleon, charizard,
-                    squirtle, wartortle, blastoise, caterpie, metapod, butterfree, weedle, kakuna, beedrill, pidgey,
-                    pidgeotto, pidgeot, rattata, raticate);
-
-                    return pokemonsUrls;
-                },
-
-                
-                goToNextVideo() {
-                    this.currentVideoIndex++;
-                    let pokemonsUrls = this.orderUrls();  
-                    let singleVideo = pokemonsUrls[this.currentVideoIndex];
-                    this.singleVideo = singleVideo; 
-                },
-
-                goToPreviousVideo(){
-                    this.currentVideoIndex--; 
-                    let pokemonsUrls = this.orderUrls();  
-                    let singleVideo = pokemonsUrls[this.currentVideoIndex];
-                    this.singleVideo = singleVideo; 
+            getVideoCollection() {
+                db.collection('pokemons').get().then((response) => {
+                for (var i=0; i < response.docs.length; i++) {
+                    let urls = response.docs[i]._document.data.internalValue.root.value.internalValue;
+                    this.docsVideos.push(urls);
                 }
+                    this.urlsCollection = this.docsVideos
+                });
+
+                return this.urlsCollection
+            },
+
+            orderUrls() {
+                let bulbasaur = this.urlsCollection[0].replace("charmander", "bulbasaur");
+                let ivysaur = this.urlsCollection[1].replace("beedrill", "ivysaur");
+                let venusaur = this.urlsCollection[2].replace("blastoise", "venusaur");
+                let charmander = this.urlsCollection[3].replace("bulbasaur", "charmander");
+                let charmeleon = this.urlsCollection[4].replace("butterfree", "charmeleon");
+                let charizard = this.urlsCollection[5].replace("caterpie", "charizard");
+                let squirtle = this.urlsCollection[6].replace("charizard", "squirtle");
+                let wartortle = this.urlsCollection[7].replace("charmeleon", "wartortle");
+                let blastoise = this.urlsCollection[8].replace("ivysaur", "blastoise");
+                let caterpie = this.urlsCollection[9].replace("kakuna", "caterpie");
+                let metapod = this.urlsCollection[10].replace("metapod", "metapod");
+                let butterfree = this.urlsCollection[11].replace("pidgeot", "butterfree");
+                let weedle = this.urlsCollection[12].replace("pidgeotto", "weedle");
+                let kakuna = this.urlsCollection[13].replace("pidgey", "kakuna");
+                let beedrill = this.urlsCollection[14].replace("raticate", "beedrill");
+                let pidgey = this.urlsCollection[15].replace("rattata","pidgey");
+                let pidgeotto = this.urlsCollection[16].replace("squirtle","pidgeotto");
+                let pidgeot = this.urlsCollection[17].replace("venusaur","pidgeot");
+                let rattata = this.urlsCollection[18].replace("wartortle","rattata");
+                let raticate = this.urlsCollection[19].replace("weedle","raticate");
+                let pokemonsUrls = [];
+                pokemonsUrls.push(bulbasaur, ivysaur, venusaur, charmander, charmeleon, charizard,
+                squirtle, wartortle, blastoise, caterpie, metapod, butterfree, weedle, kakuna, beedrill, pidgey,
+                pidgeotto, pidgeot, rattata, raticate);
+
+                return pokemonsUrls;
+            },
+
+            
+            goToNextVideo() {
+                this.currentVideoIndex++;
+                let pokemonsUrls = this.orderUrls();  
+                let singleVideo = pokemonsUrls[this.currentVideoIndex];
+                this.singleVideo = singleVideo; 
+            },
+
+            goToPreviousVideo(){
+                this.currentVideoIndex--; 
+                let pokemonsUrls = this.orderUrls();  
+                let singleVideo = pokemonsUrls[this.currentVideoIndex];
+                this.singleVideo = singleVideo; 
+            }
         }
   
     }
@@ -185,60 +161,47 @@ import db from '@/fb'
 
 <style>
 
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:800);
+    @import url(http://fonts.googleapis.com/css?family=Open+Sans:800);
 
-#div-pokemons {
-    display: none;
-}
+    #div-pokemons {
+        display: none;
+    }
 
-#pokemonTitle {
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: center;
-}
+    #pokemonTitle {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center;
+    }
 
-.v-card_text {
-    display: flex;
-    flex-direction: column;
-    width: 700px;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
+    .v-card_text {
+        display: flex;
+        flex-direction: column;
+        width: 700px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 
-@keyframes shadow-pulse
-{
-     0% {
-          box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.2);
-     }
-     100% {
-          box-shadow: 0 0 0 50px rgba(0, 0, 0, 0);
-     }
-}
-.v-btn:hover {
- background-color: #80ccc4;
-}
+    @keyframes shadow-pulse
+    {
+        0% {
+            box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.2);
+        }
+        100% {
+            box-shadow: 0 0 0 50px rgba(0, 0, 0, 0);
+        }
+    }
+    .v-btn:hover {
+    background-color: #80ccc4;
+    }
 
-.v-btn__content:hover {
-    color:#000000;
-    animation: shadow-pulse 1s 1;   
-}
+    .v-btn__content:hover {
+        color:#000000;
+        animation: shadow-pulse 1s 1;   
+    }
 
-.shadow:hover {
-  box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.5);
-}
-
-/* primary: #212121
-   primary Light: #484848
-   primary dark: #000000
-   secondary: #80cbc4
-   secondary dark: #4f9a94
-   secondary light: #b2fef7
-*/
-
-
-
-
-
+    .shadow:hover {
+    box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.5);
+    }
 
 </style>

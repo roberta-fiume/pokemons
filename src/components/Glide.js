@@ -1,7 +1,6 @@
 import Glide from '@glidejs/glide'
 import '@glidejs/glide/dist/css/glide.core.min.css'
 import events from './events'
-import model from '@/model.js'
 import { EventBus } from '@/eventBus.js';
 
 export default {
@@ -121,12 +120,6 @@ export default {
     active: {
       type: Number,
       default: null
-    },
-
-    example: {
-      type: String,
-      default: 'hello',
-     
     }
 
   },
@@ -135,24 +128,14 @@ export default {
   data() {
     return {
       glide: undefined,
-      scale: "transform: scale(1.3)",
-      mutateProp: this.example
     }
   },
 
   watch: {
     active () {
       this.changeSlideByModel()
-    },
+    }
 
-    example() {
-      // this.example = this.scale;
-      console.log("i AM WATCHEDDD", this.mutateProp)
-    } 
-  },
-
-  created() {
-    console.log("I CHANGED IN CREATED", this.class)
   },
 
   render (h) {
@@ -201,8 +184,7 @@ export default {
 
   computed: {
     currentSlide () {
-   
-     console.log("THIS IS SCALEEEEEE IN SCLIDE", this.scale)
+
       EventBus.$emit('i-got-clicked', this.glide.index);
 
       return this.glide.index
@@ -223,18 +205,10 @@ export default {
 
   mounted () {
     this.init()
-    // this.example = this.scale;
-    // console.log("i AM TRANSFORMED IN CREATED", this.class)
-
   },
 
   methods: {
   
-    // transformation() {
-    //   this.example = this.scale;
-    //   return this.example
-    // },
-
     /**
      * Initialization glide
      */

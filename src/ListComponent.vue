@@ -2,7 +2,7 @@
     <div id="app">
          <vue-glide class="demo" :bullet="true" ref="pokemons">
                 <vue-glide-slide v-for="(pokemon, index) in infoPokemonsProp" >
-                      <pokemon-component :pokemonName="pokemon.name" :indexProp="pokemon" :realIndexProp="index"></pokemon-component> 
+                      <pokemon-component :pokemonName="pokemon.name" :pokemon="pokemon" :index="index"></pokemon-component> 
                 </vue-glide-slide>
                 <template slot="control">
                     <button data-glide-dir="<" class="controls"> < </button>
@@ -30,9 +30,6 @@
     import PokemonComponent from "./PokemonComponent.vue"
     import VueGlide from './components/Glide'
     import VueGlideSlide from './components/GlideSlide'
-    import model from './model.js'
-
-
 
     export default {
         props: ['infoPokemonsProp'],  
@@ -43,21 +40,10 @@
         
         },
 
-        data() {
-            return {
-           
-    
-            }
-
-        },
-
-
         created() {
             let names = this.capitalizeAllPokemonNames(this.infoPokemonsProp);
             for (var i = 0; i < this.infoPokemonsProp.length; i++) {
                 this.infoPokemonsProp[i].name = names[i];
-            // console.log("THIS IS INFO POKEMONS PROP IN LIST COMPONENTTTTT", this.infoPokemonsProp)
-           
         }
 
         },
@@ -75,14 +61,8 @@
         capitalizeFirstLetter(string) {
             return string.charAt(0).toUpperCase() + string.slice(1);
         }
-
-    }
-
-
-       
-
-     
-    }
+    }    
+}
 
     
   
@@ -102,7 +82,9 @@
     .glide {
       &__slide {
         display: flex;
-        border: 2px solid #b2fef7;
+        // border: 2px solid #b2fef7;
+        // width: 200px;
+        // height: 300px;
         width: 550px;
         height: 450px;
         align-items: center;
@@ -117,9 +99,9 @@
           border: none;
           color: #fff;
            opacity: 1;
-         background: linear-gradient(-45deg,#8cf3e577,#0d4350);
+        //  background: linear-gradient(-45deg,#8cf3e577,#0d4350);
         //   background: linear-gradient(-45deg,#ed145b,#7b31f4);
-          background-color: #80cbc4;
+        //   background-color: #80cbc4;
         }
       }
     }

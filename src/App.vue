@@ -8,7 +8,6 @@
                   x="50%" y="50%" dy=".35em">
               Pokemon
             </text>
-
           </symbol>  
    
           <use xlink:href="#s-text" class="text"></use>
@@ -18,7 +17,6 @@
           <use xlink:href="#s-text" class="text"></use>
         </svg>
 
-
           <img :src="images.mainImg" id="image"/>
           <div id="flex-div">
             <h1 class="display-1 font-weight-medium" id="h1" @click="showPokemons" > get them all</h1>
@@ -26,8 +24,6 @@
           </div>
         </div>
    
-      
-    
        <div class="wrap-div ma-5">
           <div v-if="showDivSinglePokemon" id="singlePokemonBox" class="grey darken-4">
             <SinglePokemon :infoSinglePokemonProp="infoPokemons" />
@@ -40,8 +36,6 @@
               <ListComponent :infoPokemonsProp="infoPokemons"/>
           </div>
        </div>
-
-
   </v-app>
 </template>
 
@@ -52,15 +46,13 @@
 
   export default {
 
-
-
     name: 'App',
      components: {
       ListComponent,
       SinglePokemon
     },
    
-    data () {
+    data() {
       return {
         infoPokemons: "pokemons",
         imagesPokemons: "images",
@@ -76,7 +68,6 @@
 
     methods: {
       getPokemonsNames() {
-        console.log("Hello, I work! I am GET POKEMONS");
         const axios = require('axios');
         axios.get('https://pokeapi.co/api/v2/pokemon/')
         .then(response => (this.infoPokemons = response.data.results))
@@ -102,10 +93,9 @@
 
     },
     
-      created() {
-        let infoPokemons = this.getPokemonsNames();
-        console.log("THESE ARE MY POKEMONS: ", this.infoPokemons)
-      },
+    created() {
+      let infoPokemons = this.getPokemonsNames();
+    },
   }
 </script>
 
@@ -114,10 +104,6 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:800);
 
 html {
-  height: 100%;
-}
-
-body {
   height: 100%;
 }
 
@@ -171,11 +157,6 @@ body {
   margin-bottom: 50px;
 }
 
-  /* .wrap-div {
-  display: none;
-  flex-direction: column;
-  justify-content: space-evenly; 
-}   */
 
  #title {
   display: flex;
@@ -196,7 +177,6 @@ body {
 }
 
   
-
  .text {
   fill: none;
   stroke-width: 6;
@@ -246,10 +226,6 @@ body {
   100% {
     stroke-dashoffset: -400;
   }
-}
-
-html, body {
-  height: 100%;
 }
 
 body {
