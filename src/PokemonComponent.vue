@@ -11,9 +11,9 @@
                  <h3 class="title number">{{pokemonNumber}}</h3>
             </v-card-title>
 
-            <v-card-title class="v-card_title">
-                <v-icon left small>assignment</v-icon>
-                <span class="title font-weight-light">Ability: </span><h3 class="title ml-2">{{ability}}</h3>
+            <v-card-title class="v-card_title" id="ability">
+                <v-icon left small v-if="showIcon">assignment</v-icon>
+                <span class="title font-weight-light" v-if="showAbilitySpan">Ability: </span><h3 class="title ml-2">{{ability}}</h3>
             </v-card-title>
              
             <v-card-actions class="v-card_actions">
@@ -58,32 +58,44 @@ import { EventBus } from '@/eventBus.js';
             pokemonName: String,
             pokemonUrl: String,
             pokemon: Object,
-            index: Number
+            componentIndex: Number
         },
 
         data() {
             return {
-                pokemonNumber:"",
+                pokemonNumber: "",
                 ability: "",
                 linksForImages: "",
                 scaling: false,
-               
+                abilityClass: true,
+                showIcon: false,
+                showAbilitySpan: false 
             }
         },
 
         created() {
             let linkImages = this.getLinksForImages();
-            let pokemonNumber = this.getPokemonNumber();
-            let pokemonAbility = this.getPokemonAbility();
+            if (this.componentIndex === 0) {
+                 this.scaling = true;
+            }
         },
 
 
           updated(){
               EventBus.$on('i-got-clicked', slideIndex => {
-                 if (slideIndex === this.index)  {
+                 if (slideIndex === this.componentIndex)  {
                         this.scaling = true;
+                        let pokemonNumber = this.getPokemonNumber();
+                        let pokemonAbility = this.getPokemonAbility();
+                        this.showIcon = true;
+                        this.showAbilitySpan = true;
                         } else {
                         this.scaling = false; 
+                        this.pokemonNumber = "";
+                        this.ability = "",
+                        this.abilityClass = true,
+                        this.showIcon = false;
+                        this.showAbilitySpan = false;
                     }
                 });
             },
@@ -135,6 +147,9 @@ import { EventBus } from '@/eventBus.js';
       justify-content: center; 
      
     }
+    .title {
+        font-size: 17px !important;
+    }
 
     .v-list__tile {
         padding: 0px;
@@ -143,6 +158,10 @@ import { EventBus } from '@/eventBus.js';
     .v-card_title {
         margin-top: 10px;
         height: 35px;
+    }
+
+    #ability {
+        margin-top: 0px;
     }
 
     .number {
@@ -167,6 +186,10 @@ import { EventBus } from '@/eventBus.js';
    .scaling {
        transition: transform 0.7s;
        transform: scale(1.7)
+   }
+
+   .abilityClass {
+       display: none;
    }
 
 </style>

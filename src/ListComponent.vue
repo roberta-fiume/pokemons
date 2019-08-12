@@ -2,7 +2,7 @@
     <div id="app">
          <vue-glide class="demo" :bullet="true" ref="pokemons">
                 <vue-glide-slide v-for="(pokemon, index) in infoPokemonsProp" >
-                      <pokemon-component :pokemonName="pokemon.name" :pokemon="pokemon" :index="index"></pokemon-component> 
+                      <pokemon-component :pokemonName="pokemon.name" :pokemon="pokemon" :componentIndex="index"></pokemon-component> 
                 </vue-glide-slide>
                 <template slot="control">
                     <button data-glide-dir="<" class="controls"> < </button>
